@@ -1,4 +1,4 @@
-# Monitoring-Mtl-Serverless
+# Serverless API
 # A2023-PFE014-E01
 
 Projet de fin d'etude - Automne 2023 - ETS Montreal
