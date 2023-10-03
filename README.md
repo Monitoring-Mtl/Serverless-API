@@ -81,11 +81,13 @@
 
 <!-- A PROPOS DU PROJET -->
 ## A propos du project
+</br>
 <div align="center">
   <a href="https://www.etsmtl.ca/">
     <img src="https://github.com/Monitoring-Mtl/Serverless-API/assets/113111772/f4646e57-50f7-4394-a698-2e81f886870e" alt="Logo" width="200" height="200">
   </a>
 </div>
+</br>
 
 Dans le contexte des villes intelligentes, des systèmes de transport intelligents (ITS), et de la mobilité
 durable, le développement de solutions logicielles permettant de mieux comprendre l'impact de divers
@@ -94,19 +96,19 @@ facteurs (par exemple, les incidents routiers, la construction et la météo) su
 celles fournies par la Ville de Montréal et la STM, permet maintenant de développer divers types de
 solutions/applications logicielles qui contribuent à l’amélioration de la qualité de vie dans les villes.
 
-
+</br>
 
 Le but de cette application:
 * Développer une application infonuagique qui collect des données (en temps réels)
 * Analyser les données recueillient
 * Construire une interface pour visualiser les données analyser
-* 
-Les fonctionnalités mentionnées ci-dessus sont à titre d'exemple pour clarifier l'objectif de chaque
-composant (micro-service)
+
+</br>
+
+  _**Les fonctionnalités mentionnées ci-dessus sont à titre d'exemple pour clarifier l'objectif de chaque
+composant (micro-service)_
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
-
-
 
 ### Construit Avec
 
