@@ -21,10 +21,10 @@
 
 <div align="center">
 
-  <a href="">[![Contributors][contributors-shield]][contributors-url]</a>
-  <a href="">[![Forks][forks-shield]][forks-url]</a>
-  <a href="">[![Stargazers][stars-shield]][stars-url]</a>
-  <a href="">[![Issues][issues-shield]][issues-url]</a>
+  <a href="">![GitHub contributors](https://img.shields.io/github/contributors/Monitoring-Mtl/Serverless-API?color=green)</a>
+  <a href="">![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Monitoring-Mtl/Serverless-Api/master)</a>
+  <a href="">![GitHub issues](https://img.shields.io/github/issues/Monitoring-Mtl/Serverless-API)</a>
+  <a href="">![GitHub top language](https://img.shields.io/github/languages/top/Monitoring-Mtl/Serverless-Api)</a>
 
 </div>
 <!-- [![MIT License][license-shield]][license-url]
@@ -80,7 +80,7 @@
     <li><a href="#contribuer">Contribuer</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#reconnaissance">Reconnaissance</a></li>
+    <li><a href="#reconnaissance">Reconnaissances</a></li>
   </ol>
 </details>
 
