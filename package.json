@@ -1,0 +1,29 @@
+{
+  "name": "serverless-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "offline": "npx serverless offline"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.423.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "gtfs-realtime-bindings": "^1.1.1",
+    "protobufjs": "^7.2.5",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0",
+    "serverless-offline": "^13.1.2"
+  }
+}
