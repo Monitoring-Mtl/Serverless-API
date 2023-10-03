@@ -37,7 +37,7 @@
 <br />
 <div align="center">
   <a href="https://www.etsmtl.ca/">
-    <img src="https://www.etsmtl.ca/getmedia/989ad5d7-75c8-4ac7-b4f0-ef9aaacb9643/Logo_ETS_Noir_SansTypo_FR" alt="Logo" width="120" height="120">
+    <img src="https://www.etsmtl.ca/getmedia/989ad5d7-75c8-4ac7-b4f0-ef9aaacb9643/Logo_ETS_Noir_SansTypo_FR" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Monitoring Mtl - Serverless API</h3>
@@ -88,8 +88,11 @@
 
 <!-- A PROPOS DU PROJET -->
 ## A propos du project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<div align="center">
+  <a href="https://www.etsmtl.ca/">
+    <img src="https://github.com/Monitoring-Mtl/Serverless-API/assets/113111772/8ee77f43-a039-4e81-8907-d8403d812820" alt="Logo" width="200" height="200">
+  </a>
+</div>
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
