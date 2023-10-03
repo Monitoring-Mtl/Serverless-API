@@ -140,10 +140,10 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Vous trouverez ci-bas un exemple de la procédure pour installer le projet localement, ainsi que lancer le projet pour tester votre travail._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Obtenir une clé d'API gratuite de la STM a [Stm Portail Développeur](https://portail.developpeurs.stm.info/apihub/?_gl=1*15e9526*_ga*MTUwNTUwMzAzMi4xNjk1MDU5MDA1*_ga_37MDMXFX83*MTY5NjM0NDc3MC4xMi4wLjE2OTYzNDQ3NzAuNjAuMC4w#/login)
+2. Cloner le repertoire
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
@@ -151,9 +151,14 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Creer un .ENV et sauvegarder les clés API dans le `.env`
+   ```.env
+    API_URL=https://api.stm.info/pub/od/gtfs-rt/ic/v2/vehiclePositions
+    API_KEY=VOTRE_CLE_API
+   ```
+5. Lancer le serverless local
+   ```sh
+     npm run offline
    ```
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
