@@ -145,7 +145,7 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
 1. Obtenir une clé d'API gratuite de la STM a [Stm Portail Développeur](https://portail.developpeurs.stm.info/apihub/?_gl=1*15e9526*_ga*MTUwNTUwMzAzMi4xNjk1MDU5MDA1*_ga_37MDMXFX83*MTY5NjM0NDc3MC4xMi4wLjE2OTYzNDQ3NzAuNjAuMC4w#/login)
 2. Cloner le repertoire
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Monitoring-Mtl/Serverless-API.git
    ```
 3. Install NPM packages
    ```sh
