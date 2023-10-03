@@ -109,7 +109,7 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 ### Construit Avec
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples. (TRADUIRE)
+Voici la liste des frameworks et des outils que nous utilisons dans le projet : 
 
 * [![NodeJS][NodeJS]][NodeJS-url]
 * [![AWS][AWS]][AWS-url]
@@ -127,12 +127,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- POUR DÉBUTER -->
 ## Pour Débuter
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Voici la procédure à suivre pour installer et lancer le projet. IMPORTANT ! si vous n'avez pas NodeJS / NPM [cliquez-ici](https://nodejs.org/en)
 
 ### Prérequis
 
-This is an example of how to list things you need to use the software and how to install them.
+Pour mettre a jour votre version de npm à la plus récente
 * npm
   ```sh
   npm install npm@latest -g
@@ -140,7 +139,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Vous trouverez ci-bas un exemple de la procédure pour installer le projet localement, ainsi que lancer le projet pour tester votre travail._
+_Vous trouverez ci-bas un exemple de la procédure pour installer le projet localement, ainsi que lancer le projet pour tester que votre environnement de travail est fonctionnel._
 
 1. Obtenir une clé d'API gratuite de la STM a [Stm Portail Développeur](https://portail.developpeurs.stm.info/apihub/?_gl=1*15e9526*_ga*MTUwNTUwMzAzMi4xNjk1MDU5MDA1*_ga_37MDMXFX83*MTY5NjM0NDc3MC4xMi4wLjE2OTYzNDQ3NzAuNjAuMC4w#/login)
 2. Cloner le repertoire
@@ -179,13 +178,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- PLAN -->
 ## Plan de Développement
 
-- [x] Add Changelog
-- [x] Add haut links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] Ajouter les endpoints nécessaires
+- [ ] Ajuster et automatiser le Pipeline
+- [ ] Collection des données
+- [ ] Faire la documentations
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
@@ -201,10 +197,10 @@ En esperant que le projet continue de croître grâce a vos contributions. **Mer
 Nous avons décider d'utiliser une structure de Trunk base pour la gestion des branches. Il est donc suggérer de toujours faire une branche a partir de master en suivant la procédure suivante :
 
 1. Cloner le Project (_si ce n'est pas déjà fait_)
-2. Creer un branche Feature (`git checkout -b feature/AmazingFeature`)
+2. Creer un branche Feature ou Documentation (`git checkout -b feature/AmazingFeature`)
 3. Commit vos Changements (`git commit -m 'ajout d'une AmazingFeature'`)
 4. Pousser la Branch (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
+5. Ouvrir une Pull Request et associer votre issue à la PR.
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
