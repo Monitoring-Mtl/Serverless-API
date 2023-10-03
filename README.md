@@ -169,7 +169,7 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
 
 Tbd.
 
-_Pour plus d'exemples, référez-vous à [Documentation](https://example.com)_
+_Pour plus d'exemples, référez-vous à [Documentation](https://github.com/Monitoring-Mtl/Serverless-API/wiki)_
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
