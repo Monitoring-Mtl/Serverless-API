@@ -1,0 +1,39 @@
+name: ESLint
+
+on:
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+    
+        steps:
+        - name: Check out code
+          uses: actions/checkout@v2                            
+
+        - name: Setup Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+            
+        - name: Install dependencies
+          run: npm install
+            
+        - name: Lint with ESLint and auto fix
+          # Lint all JavaScript files using config file and fix any errors 
+          run: npx eslint --config-path .eslintrc.yml --ext .js --fix ./src
+        
+        - name: Commit fixes if needed
+          run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            if [[`git diff --stat` != '' ]]; then 
+                git commit -am "Fix lint errors"
+            else
+                echo "No lint errors found"
+            fi
+        
+        
+            
