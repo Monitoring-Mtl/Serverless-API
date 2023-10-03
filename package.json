@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "offline": "npx serverless offline"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,8 @@
   "devDependencies": {
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0",
     "serverless-offline": "^13.1.2"
   }
 }
