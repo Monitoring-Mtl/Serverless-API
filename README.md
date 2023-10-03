@@ -218,7 +218,7 @@ Francis Bordeleau- [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2a
 
 Remerciements à 
 
-* [AWS]: https://aws.amazon.com/
+* [AWS - Academy]: https://aws.amazon.com/
 * [FX Innovation - Cloud Campus]: https://www.fxinnovation.com/cloud-campus/
 * [Badges]: https://github.com/Ileriayo/markdown-badges#markdown-badges
 * [Readme Template]: https://github.com/othneildrew/Best-README-Template
