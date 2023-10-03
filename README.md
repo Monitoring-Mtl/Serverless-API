@@ -167,9 +167,9 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
 <!-- EXAMPLES D'UTILISATION -->
 ## Utilisation
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Tbd.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_Pour plus d'exemples, référez-vous à [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
@@ -183,7 +183,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Collection des données
 - [ ] Faire la documentations
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+Voir les [issues](https://github.com/Monitoring-Mtl/Serverless-API/issues) pour voir les Features (et issues connuent).
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
@@ -204,23 +204,10 @@ Nous avons décider d'utiliser une structure de Trunk base pour la gestion des b
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">haut</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Francis Bordeleau- [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
@@ -229,8 +216,10 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- RECONNAISSANCES -->
 ## Reconnaissances
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Remerciements à 
 
+* [AWS]: https://aws.amazon.com/
+* [FX Innovation - Cloud Campus]: https://www.fxinnovation.com/cloud-campus/
 * [Badges]: https://github.com/Ileriayo/markdown-badges#markdown-badges
 * [Readme Template]: https://github.com/othneildrew/Best-README-Template
 
