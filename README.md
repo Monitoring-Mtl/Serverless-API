@@ -188,16 +188,15 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 <!-- CONTRIBUER -->
 ## Contribuer
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+En esperant que le projet continue de croître grâce a vos contributions. **Merci**
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Nous avons décider d'utiliser une structure de Trunk base pour la gestion des branches. Il est donc suggérer de toujours faire une branche a partir de master en suivant la procédure suivante :
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Cloner le Project (_si ce n'est pas déjà fait_)
+2. Creer un branche Feature (`git checkout -b feature/AmazingFeature`)
+3. Commit vos Changements (`git commit -m 'ajout d'une AmazingFeature'`)
+4. Pousser la Branch (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
