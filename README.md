@@ -46,13 +46,6 @@
     Projet de fin d'etude - Automne 2023 - ETS Montreal
     <br />
     <a href="https://github.com/Monitoring-Mtl/Serverless-API/wiki"><strong>Explorer la documentation »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">Placeholder 1</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Placeholder 2</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Placeholder 3</a>
   </p>
 </div>
 
@@ -94,14 +87,22 @@
   </a>
 </div>
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Dans le contexte des villes intelligentes, des systèmes de transport intelligents (ITS), et de la mobilité
+durable, le développement de solutions logicielles permettant de mieux comprendre l'impact de divers
+facteurs (par exemple, les incidents routiers, la construction et la météo) sur la circulation devient un
+élément essentiel de la gestion du trafic routier. L’émergence récente des données ouvertes, comme
+celles fournies par la Ville de Montréal et la STM, permet maintenant de développer divers types de
+solutions/applications logicielles qui contribuent à l’amélioration de la qualité de vie dans les villes.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+
+Le but de cette application:
+* Développer une application infonuagique qui collect des données (en temps réels)
+* Analyser les données recueillient
+* Construire une interface pour visualiser les données analyser
+* 
+Les fonctionnalités mentionnées ci-dessus sont à titre d'exemple pour clarifier l'objectif de chaque
+composant (micro-service)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
@@ -207,7 +208,9 @@ Nous avons décider d'utiliser une structure de Trunk base pour la gestion des b
 <!-- CONTACT -->
 ## Contact
 
-Francis Bordeleau- [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
+Francis Bordeleau - [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
+Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
+Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
