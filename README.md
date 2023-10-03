@@ -37,7 +37,7 @@
 <br />
 <div align="center">
   <a href="https://www.etsmtl.ca/">
-    <img src="https://www.etsmtl.ca/getmedia/989ad5d7-75c8-4ac7-b4f0-ef9aaacb9643/Logo_ETS_Noir_SansTypo_FR" alt="Logo" width="200" height="200">
+    <img src="https://www.etsmtl.ca/getmedia/a38cc621-8248-453b-a24e-ff22bd68ada5/Logo_ETS_SansTypo_FR" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Monitoring Mtl - Serverless API</h3>
@@ -90,7 +90,7 @@
 ## A propos du project
 <div align="center">
   <a href="https://www.etsmtl.ca/">
-    <img src="https://github.com/Monitoring-Mtl/Serverless-API/assets/113111772/8ee77f43-a039-4e81-8907-d8403d812820" alt="Logo" width="200" height="200">
+    <img src="https://github.com/Monitoring-Mtl/Serverless-API/assets/113111772/f4646e57-50f7-4394-a698-2e81f886870e" alt="Logo" width="200" height="200">
   </a>
 </div>
 
