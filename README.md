@@ -69,11 +69,10 @@
       </ul>
     </li>
     <li><a href="#utilisations">Utilisations</a></li>
-    <li><a href="#plan">Plan de développement</a></li>
+    <li><a href="#plan de développement">Plan de développement</a></li>
     <li><a href="#contribuer">Contribuer</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#reconnaissance">Reconnaissances</a></li>
+    <li><a href="#reconnaissances">Reconnaissances</a></li>
   </ol>
 </details>
 
