@@ -213,6 +213,13 @@ Nous avons décider d'utiliser une structure de Trunk base pour la gestion des b
 - Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
 - Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
 
+### Étudiants
+
+- Pierre Amar Abdelli - [@linkedin](https://www.linkedin.com/in/pabdelli/)
+- Alexandre Bouillon - [@linkedin](https://www.linkedin.com/in/alexandre-bouillon-4b67ba128/)
+- Philippe Lamy - [@linkedin](https://www.linkedin.com/in/philippe-lamy-86717a276/)
+- Simon St-Pierre - [@linkedin](https://www.linkedin.com/in/simon-st-pierre-9a2a7b19b/)
+
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
 
