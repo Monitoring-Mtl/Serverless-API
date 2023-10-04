@@ -56,20 +56,20 @@
   <summary>Table des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">A propos du projet</a>
+      <a href="#a-propos-du-projet">A propos du projet</a>
       <ul>
-        <li><a href="#built-with">Construit avec</a></li>
+        <li><a href="#construit-avec">Construit avec</a></li>
       </ul>
     </li>
     <li>
-      <a href="#pour-debuter">Pour débuter</a>
+      <a href="#pour-débuter">Pour débuter</a>
       <ul>
-        <li><a href="#prerequis">Prérequis</a></li>
+        <li><a href="#prérequis">Prérequis</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#utilisations">Utilisations</a></li>
-    <li><a href="#plan de développement">Plan de développement</a></li>
+    <li><a href="#utilisation">Utilisations</a></li>
+    <li><a href="#plan-de-développement">Plan de développement</a></li>
     <li><a href="#contribuer">Contribuer</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#reconnaissances">Reconnaissances</a></li>
