@@ -210,9 +210,9 @@ Nous avons décider d'utiliser une structure de Trunk base pour la gestion des b
 <!-- CONTACT -->
 ## Contact
 
-Francis Bordeleau - [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
-Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
-Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
+- Francis Bordeleau - [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
+- Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
+- Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
