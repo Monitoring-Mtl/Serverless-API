@@ -29,8 +29,13 @@ jobs:
           run: |
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            if [[ $(git diff --stat) != '' ]]; then 
-                git commit -am "Fix lint errors"
+            if [[ $(git diff --stat './src/**/*.js') != '' ]]; then 
+                git add ./src/**/*.js
+                git diff --stat -- './src/**/*.js'
+                git commit -m "Fix lint errors on JS files"
+
+                git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@https://github.com/Monitoring-Mtl/Serverless-API.git
+                git push origin ${GITHUB_REF#refs/heads/}
             else
                 echo "No lint errors found"
             fi
