@@ -8,6 +8,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "offline": "npx serverless offline"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "npx eslint --config .eslintrc.yml --ext .js --fix ./src && git diff --name-only --cached | xargs git add"
+      ]
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,6 +31,7 @@
     "dotenv": "^16.3.1",
     "eslint": "^8.50.0",
     "eslint-config-google": "^0.14.0",
+    "husky": "^4.3.8",
     "serverless-offline": "^13.1.2"
   }
 }
