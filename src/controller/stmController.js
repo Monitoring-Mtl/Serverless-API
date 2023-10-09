@@ -15,7 +15,7 @@ export const getVehiclePosition = async (req, res, next) => {
 
   try {
     const stmRes = await axiosInstance
-        .get(apiUrl, {responseType: 'arraybuffer'})
+        .get(apiUrl, {responseType: 'arraybuffer'});
 
     const decodedData = GtfsRealtimeBindings.transit_realtime.FeedMessage
         .decode(new Uint8Array(stmRes.data));
