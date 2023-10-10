@@ -114,6 +114,7 @@ composant (micro-service)_
 Voici la liste des frameworks et des outils que nous utilisons dans le projet : 
 
 * [![NodeJS][NodeJS]][NodeJS-url]
+* [![TypeScript][TypeScript]][TypeScript-url]
 * [![AWS][AWS]][AWS-url]
 * [![GitHub][GitHub]][GitHub-url]
 * [![GitHubActions][GitHubActions]][GitHubActions-url]
@@ -267,6 +268,8 @@ Les branches doivent etre nommber avec le numero de issue generer dans le kanban
 [product-screenshot]: images/screenshot.png
 [NodeJS]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
 [NodeJS-url]: https://nodejs.org/en
+[TypeScript]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
 [AWS]: https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white
 [AWS-url]: https://aws.amazon.com/
 [GitHub]: https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
