@@ -17,8 +17,8 @@ jobs:
           uses: ./.github/actions/setup-node
 
         - name: Lint with ESLint and auto fix
-          # Lint all JavaScript files using config file and fix any errors 
-          run: npx eslint --config .eslintrc.js --ignore-path .gitignore --ext .js,.ts --fix ./src
+          # Lint all JavaScript and Typescript files using config file and fix any errors 
+          run: npx eslint --config .eslintrc.js --ignore-path .gitignore --ext .js,.ts --fix 
         
         - name: Commit fixes if needed
           run: |
