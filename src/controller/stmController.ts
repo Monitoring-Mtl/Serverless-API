@@ -1,8 +1,7 @@
 import axios from 'axios';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-import { DynamoDBClient, QueryCommand, ScanOutput, AttributeValue } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, QueryCommand, ScanOutput } from '@aws-sdk/client-dynamodb';
 import { unmarshall } from '@aws-sdk/util-dynamodb';
-import Trip from '../models/ITrip';
 import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
 
@@ -49,7 +48,7 @@ export const getAllTripsForRoute = async (req: Request, res: Response) => {
 
   client.send(command).then((data: ScanOutput) => {
     res.status(200).json({
-      data: data.Items?.map((item) => unmarshall(item) as Trip),
+      data: data.Items?.map((item) => unmarshall(item)),
       count: data.Count
     })
   }).catch((error) => {
