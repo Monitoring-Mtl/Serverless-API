@@ -56,24 +56,23 @@
   <summary>Table des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">A propos du projet</a>
+      <a href="#a-propos-du-projet">A propos du projet</a>
       <ul>
-        <li><a href="#built-with">Construit avec</a></li>
+        <li><a href="#construit-avec">Construit avec</a></li>
       </ul>
     </li>
     <li>
-      <a href="#pour-debuter">Pour débuter</a>
+      <a href="#pour-débuter">Pour débuter</a>
       <ul>
-        <li><a href="#prerequis">Prérequis</a></li>
+        <li><a href="#prérequis">Prérequis</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#utilisations">Utilisations</a></li>
-    <li><a href="#plan">Plan de développement</a></li>
+    <li><a href="#utilisation">Utilisations</a></li>
+    <li><a href="#plan-de-développement">Plan de développement</a></li>
     <li><a href="#contribuer">Contribuer</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#reconnaissance">Reconnaissances</a></li>
+    <li><a href="#reconnaissances">Reconnaissances</a></li>
   </ol>
 </details>
 
@@ -210,9 +209,16 @@ Nous avons décider d'utiliser une structure de Trunk base pour la gestion des b
 <!-- CONTACT -->
 ## Contact
 
-Francis Bordeleau - [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
-Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
-Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
+- Francis Bordeleau - [@linkedin](https://www.linkedin.com/in/francis-bordeleau-b2aa273/)
+- Julien Gascon-Samson - [@linkedin](https://www.linkedin.com/in/julien-gascon-samson-4585b11a/)
+- Mohammed Sayagh - [@linkedin](https://www.linkedin.com/in/mohammed-sayagh-24bab978/)
+
+### Étudiants
+
+- Pierre Amar Abdelli - [@linkedin](https://www.linkedin.com/in/pabdelli/)
+- Alexandre Bouillon - [@linkedin](https://www.linkedin.com/in/alexandre-bouillon-4b67ba128/)
+- Philippe Lamy - [@linkedin](https://www.linkedin.com/in/philippe-lamy-86717a276/)
+- Simon St-Pierre - [@linkedin](https://www.linkedin.com/in/simon-st-pierre-9a2a7b19b/)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
