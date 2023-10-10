@@ -11,7 +11,7 @@ jobs:
     
         steps:
         - name: Setup runner
-          uses: ./.github/actions/setup-runner
+          uses: ./.github/actions/setup-runner/action.yml
 
         - name: Lint with ESLint and auto fix
           # Lint all JavaScript files using config file and fix any errors 

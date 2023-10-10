@@ -1,4 +1,4 @@
-name: Setup runner
+name: Setup Node.js Environment
 description: Checks out code, caches node_modules and installs dependencies
 inputs:
   node-version:
