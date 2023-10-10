@@ -18,7 +18,9 @@ jobs:
 
         - name: Lint with ESLint and auto fix
           # Lint all JavaScript and Typescript files using config file and fix any errors 
-          run: npx eslint --config .eslintrc.js --ignore-path .gitignore --ext .js,.ts --fix 
+          run: |
+            npm run lint --fix
+            npm run format
         
         - name: Commit fixes if needed
           run: |
