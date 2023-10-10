@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
-    getVehiclePosition,
-    getAllTripsForRoute,
+  getVehiclePosition,
+  getAllTripsForRoute,
 } from "../controller/stmController.js";
 
 const router: Router = Router();
