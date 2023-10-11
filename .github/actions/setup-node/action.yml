@@ -25,6 +25,6 @@ runs:
           ~/.npm
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
-      name: Install dependencies
+    - name: Install dependencies
       run: npm install
       shell: bash
