@@ -1,4 +1,4 @@
-name: Linting
+name: Continuous Integration
 
 on:
     pull_request:
@@ -6,7 +6,8 @@ on:
             - master
 
 jobs:
-    lint:
+
+    linting:
         runs-on: ubuntu-latest
       
         steps:
@@ -31,6 +32,22 @@ jobs:
             else
                 echo "No lint errors found"
             fi
-        
+
+    testing:
+        runs-on: ubuntu-latest
+      
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Setup runner
+          uses: ./.github/actions/setup-node
+
+        - name: Run tests
+          env:
+            apiURL: mockURL
+            apiKey: mockKey
+          run: npm run test
+     
         
             
