@@ -35,7 +35,74 @@ export const getVehiclePosition = (_req: Request, res: Response) => {
         });
 };
 
+export const getAllStops = (_req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'stops',
+        },
+    });
+};
+
+export const getStopById = (req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'stops',
+            id: req.params.id,
+        },
+    });
+};
+
+export const getAllRoutes = (_req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'routes',
+        },
+    });
+};
+
+export const getRouteById = (req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'routes',
+            id: req.params.id,
+        },
+    });
+};
+
+export const getAllShapes = (_req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'shapes',
+        },
+    });
+};
+
+export const getShapeById = (req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'shapes',
+            id: req.params.id,
+        },
+    });
+};
+
+export const getAllTrips = (_req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'trips',
+        },
+    });
+};
+
 export const getAllTripsForRoute = (req: Request, res: Response) => {
+    res.status(200).json({
+        body: {
+            endpoint: 'trips',
+            id: req.params.id,
+        },
+    });
+    return;
+
     const tableName = 'STM_DATA_STATIC_TRIPS';
     const command = new QueryCommand({
         TableName: tableName,

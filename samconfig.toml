@@ -4,6 +4,6 @@ stack_name = "serverless-api"
 resolve_s3 = true
 s3_prefix = "serverless-api"
 region = "us-east-1"
-confirm_changeset = true
+confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
