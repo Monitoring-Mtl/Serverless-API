@@ -93,6 +93,7 @@ dist
 
 # Serverless build output
 .build
+.aws-sam
 
 # Gatsby files
 .cache/
