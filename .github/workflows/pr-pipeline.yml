@@ -5,6 +5,7 @@ on:
     branches:
         - master
 
+  # Allows the manual execution of the workflow from the Action tab
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
