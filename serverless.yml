@@ -1,23 +1,22 @@
 org: pabdelli
 app: serverless-api
-	
 # serverless.yml
- 
+
 service: serverless-api
 frameworkVersion: '3'
 
 provider:
-  name: aws
-  runtime: nodejs18.x
-  region: 'us-east-1'
-  profile: 'default'
+    name: aws
+    runtime: nodejs18.x
+    region: 'us-east-1'
+    profile: 'default'
 
 functions:
-  api:
-    handler: dist/index.handler
-    events:
-      - httpApi: '*'
-	
+    api:
+        handler: dist/index.handler
+        events:
+            - httpApi: '*'
+
 plugins:
-  - serverless-plugin-typescript
-  - serverless-offline
+    - serverless-plugin-typescript
+    - serverless-offline
