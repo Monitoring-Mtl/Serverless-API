@@ -10,7 +10,7 @@ const mockAxios = jest.spyOn(axios, 'get');
 const mockRequest = getMockReq();
 
 describe('getVehiclePosition', () => {
-    it('should return decoded data as JSON', async () => {
+    it('should return decoded data as JSON', () => {
         const mockResponse = {
             data: new Uint8Array([10, 2, 8, 1, 18, 1]),
         };
@@ -32,20 +32,20 @@ describe('getVehiclePosition', () => {
 
         const mockRes = getMockRes().res;
 
-        await getVehiclePosition(mockRequest, mockRes);
+        getVehiclePosition(mockRequest, mockRes);
 
         expect(mockDecode).toHaveBeenCalledWith(mockResponse.data);
         expect(mockRes).toHaveBeenCalledWith(200);
         expect(mockRes).toHaveBeenCalledWith({ body: expectedData });
     });
 
-    it('should return an error message if the request fails', async () => {
+    it('should return an error message if the request fails', () => {
         const mockError = new Error('Request failed');
         mockAxios.mockRejectedValue(mockError);
 
         const mockRes = getMockRes().res;
 
-        await getVehiclePosition(mockRequest, mockRes);
+        getVehiclePosition(mockRequest, mockRes);
 
         expect(mockRes).toHaveBeenCalledWith(409);
         expect(mockRes).toHaveBeenCalledWith({
