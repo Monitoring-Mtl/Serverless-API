@@ -12,6 +12,8 @@ jobs:
 
     lint-and-test:
       uses: ./.github/workflows/lint-test-workflow.yml
+      with:
+        deploy-test-coverage: false
 
 
 
