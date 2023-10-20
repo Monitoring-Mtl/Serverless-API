@@ -25,6 +25,7 @@ jobs:
       uses: ./.github/workflows/lint-test-workflow.yml
 
     deploy-test-coverage:
+      needs: [lint-and-test]
       name: Deploy test coverage to Github Pages
       environment:
         name: github-pages
@@ -62,7 +63,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Setup Node.js
-        uses: ./.gitub/actions/setup-node
+        uses: ./.github/actions/setup-node
       
       - name: Build and Deploy to AWS
         run: npm run deploy
