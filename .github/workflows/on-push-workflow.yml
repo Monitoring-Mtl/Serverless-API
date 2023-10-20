@@ -22,7 +22,7 @@ jobs:
 
     lint-and-test:
       name: Lint and test 
-      uses: ./.github/workflows/reusable/lint-test-workflow.yml
+      uses: ./.github/workflows/lint-test-workflow.yml
 
     deploy-test-coverage:
       name: Deploy test coverage to Github Pages

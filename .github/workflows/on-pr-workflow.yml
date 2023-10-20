@@ -11,7 +11,7 @@ on:
 jobs:
 
     lint-and-test:
-      uses: ./.github/workflows/reusable/lint-test-workflow.yml
+      uses: ./.github/workflows/lint-test-workflow.yml
 
 
 
