@@ -15,6 +15,9 @@ const config: Config.InitialOptions = {
     // Add any other Jest configuration options you need
     testMatch: ['<rootDir>/tests/**/*.ts'], // Use 'tests' folder for test files
     // Add any other Jest configuration options you need
+    collectCoverage: true,
+    coverageReporters: ['html'],
+    coverageDirectory: 'docs/coverage',
 };
 
 export default config;
