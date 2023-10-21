@@ -22,7 +22,7 @@ router.get('/trips/:id', getAllTripsForRoute);
 router.get('/routes', getAllRoutes);
 router.get('/routes/:id', getRouteById);
 
-router.get('stops', getAllStops);
+router.get('/stops', getAllStops);
 router.get('/stops/:id', getStopById);
 
 router.get('/shapes', getAllShapes);
