@@ -1,26 +1,16 @@
-name: Continuous Integration
+name: Lint and test
 
 on:
-  pull_request:
-    branches:
-        - master
-
-  # Allows the manual execution of the workflow from the Action tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-   contents: read
-   pages: write
-   id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-   group: 'pages'
-   cancel-in-progress: true
+  workflow_call:
+    inputs:
+      deploy-test-coverage:
+        description: Whether to deploy test coverage to Github Pages
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-
+    
     linting:
       runs-on: ubuntu-latest
 
@@ -28,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup runner
+      - name: Setup Node.js
         uses: ./.github/actions/setup-node
 
       - name: Lint with ESLint and auto fix
@@ -47,41 +37,44 @@ jobs:
               echo "No lint errors found"
           fi
 
-    testing:
-
+    testing:     
+      
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
-
       runs-on: ubuntu-latest
     
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup runner
+      - name: Setup Node.js
         uses: ./.github/actions/setup-node
 
       - name: Run tests
-        env:
-          API_URL: mockURL
-          API_KEY: mockKey
-        run: npm run test 
+        uses: ./.github/actions/run-tests
         continue-on-error: true
       
       - name: Configure pages
+        if: ${{ inputs.deploy-test-coverage }}
         uses: actions/configure-pages@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        if: ${{ inputs.deploy-test-coverage }}
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: test-results
-          path: ./coverage
+          name: test-coverage
+          path: ./coverage/lcov-report
       
       - name: Deploy to GitHub Pages
+        if: ${{ inputs.deploy-test-coverage }}
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          artifact_name: test-results
+          artifact_name: test-coverage
+
+
+    
+    
