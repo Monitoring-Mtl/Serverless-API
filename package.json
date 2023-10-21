@@ -2,7 +2,7 @@
     "name": "serverless-api-typescript",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/index.js",
+    "main": "dist/src/index.js",
     "scripts": {
         "test": "jest --coverage",
         "lint": "eslint --ignore-path .gitignore  --ext .js,.ts",

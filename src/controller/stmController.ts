@@ -4,6 +4,7 @@ import { DynamoDBClient, QueryCommand, ScanOutput } from '@aws-sdk/client-dynamo
 import { unmarshall } from '@aws-sdk/util-dynamodb';
 import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
+import { routes, shape, trips, stops } from '../../data/data';
 
 // Create an Axios instance with the custom headers
 const axiosInstance = axios.create({
@@ -37,35 +38,25 @@ export const getVehiclePosition = (_req: Request, res: Response) => {
 
 export const getAllStops = (_req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'stops',
-        },
+        stops: stops,
     });
 };
 
 export const getStopById = (req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'stops',
-            id: req.params.id,
-        },
+        stop: stops.filter((stop) => stop.stop_id === Number(req.params.id)),
     });
 };
 
 export const getAllRoutes = (_req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'routes',
-        },
+        routes: routes,
     });
 };
 
 export const getRouteById = (req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'routes',
-            id: req.params.id,
-        },
+        route: routes.filter((route) => route.route_id === Number(req.params.id)),
     });
 };
 
@@ -79,27 +70,19 @@ export const getAllShapes = (_req: Request, res: Response) => {
 
 export const getShapeById = (req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'shapes',
-            id: req.params.id,
-        },
+        shape: shape,
     });
 };
 
 export const getAllTrips = (_req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'trips',
-        },
+        trips: trips,
     });
 };
 
 export const getAllTripsForRoute = (req: Request, res: Response) => {
     res.status(200).json({
-        body: {
-            endpoint: 'trips',
-            id: req.params.id,
-        },
+        trips: trips.filter((trip) => trip.route_id === 5),
     });
     return;
 
