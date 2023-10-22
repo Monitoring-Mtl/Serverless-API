@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AWS from 'aws-sdk';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 import { DynamoDBClient, QueryCommand, ScanOutput } from '@aws-sdk/client-dynamodb';
 import { unmarshall } from '@aws-sdk/util-dynamodb';
@@ -12,6 +13,8 @@ const axiosInstance = axios.create({
         apiKey: apiKey,
     },
 });
+
+const athena = new AWS.Athena();
 
 // Get the vehicle position from the STM API
 export const getVehiclePosition = (_req: Request, res: Response) => {
@@ -49,8 +52,55 @@ export const getStopById = (req: Request, res: Response) => {
 };
 
 export const getAllRoutes = (_req: Request, res: Response) => {
-    res.status(200).json({
-        routes: routes,
+    const params: AWS.Athena.StartQueryExecutionInput = {
+        QueryString: `SELECT * FROM "gtfs-static-data-db"."routes"`,
+        ResultConfiguration: {
+            OutputLocation: 's3://monitoring-mtl-gtfs-static/Unsaved/',
+        },
+    };
+
+    athena.startQueryExecution(params, (err, data) => {
+        if (err) {
+            res.status(409).send(err.message);
+        } else {
+            const queryExecutionId = data.QueryExecutionId || '';
+
+            if (!queryExecutionId) {
+                res.status(409).send('Query Execution Id is missing');
+            }
+
+            // Start polling
+            let keepPolling = true;
+            while (keepPolling) {
+                athena.getQueryExecution({ QueryExecutionId: queryExecutionId }, (err, data) => {
+                    if (err) {
+                        console.error(err);
+                        keepPolling = false;
+                        return;
+                    }
+
+                    const queryExecutionStatus = data.QueryExecution?.Status?.State;
+
+                    if (queryExecutionStatus === 'SUCCEEDED') {
+                        athena.getQueryResults({ QueryExecutionId: queryExecutionId }, (err, results) => {
+                            if (err) {
+                                res.status(409).send(err.message);
+                            }
+                            res.status(200).json({
+                                routes: results,
+                            });
+                        });
+                        keepPolling = false;
+                    } else if (queryExecutionStatus === 'FAILED' || queryExecutionStatus === 'CANCELLED') {
+                        console.error('Athena query failed or was cancelled');
+                        keepPolling = false;
+                    } else {
+                        // Add a delay before the next check
+                        setTimeout(() => {}, 50);
+                    }
+                });
+            }
+        }
     });
 };
 
