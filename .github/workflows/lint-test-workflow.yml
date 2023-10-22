@@ -37,10 +37,6 @@ jobs:
                   fi
 
     testing:
-        if: ${{ inputs.deploy-test-coverage }}
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
 
         steps:
