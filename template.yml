@@ -20,6 +20,10 @@ Resources:
             Handler: dist/src/index.handler
             Runtime: nodejs14.x
             MemorySize: 512
+            Environment:
+                Variables:
+                    API_URL: !Ref ApiUrl
+                    API_KEY: !Ref ApiKey
             Events:
                 ExpressFunctionProxy:
                     Type: Api
