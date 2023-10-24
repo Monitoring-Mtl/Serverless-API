@@ -46,7 +46,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Change to your preferred AWS region
+          aws-region: ca-central-1  # Change to your preferred AWS region
 
       - name: Build and Deploy to AWS
-        run: npm run deploy
+        env:
+          STM_API_URL: ${{ secrets.STM_API_URL }}
+          STM_API_KEY: ${{ secrets.STM_API_KEY }}
+        run: |
+          npm run build
+          sam build
+          sam deploy --parameter-overrides ApiUrl=$STM_API_URL ApiKey=$STM_API_KEY 
