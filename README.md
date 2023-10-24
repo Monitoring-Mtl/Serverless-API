@@ -170,7 +170,7 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
 <!-- EXAMPLES D'UTILISATION -->
 ## Utilisation
 
-Tbd.
+Pour utiliser le endpoint de l'application visiter [swagger](https://monitoring-mtl.github.io/Swagger-github-pages/)
 
 _Pour plus d'exemples, référez-vous à [Documentation](https://github.com/Monitoring-Mtl/Serverless-API/wiki)_
 
