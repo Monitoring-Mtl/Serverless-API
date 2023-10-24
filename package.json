@@ -10,7 +10,7 @@
         "build": "rimraf dist && tsc",
         "offline": "npm run build && npx serverless offline",
         "test:watch": "jest --watch",
-        "deploy": "npm run build && sam build && sam deploy --parameter-overrides ApiUrl=${{ secrets.STM_API_URL }} ApiKey=${{ secrets.STM_API_KEY }}"
+        "deploy": "npm run build && sam build && sam deploy"
     },
     "husky": {
         "hooks": {
