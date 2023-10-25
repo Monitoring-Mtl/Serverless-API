@@ -1,11 +1,11 @@
 extends: default
 
 ignore: 
-  - node_modules/
-  - dist/
-  - coverage/
-  - tests/
-  - src/
+  - ./node_modules/
+  - ./dist/
+  - ./coverage/
+  - ./tests/
+  - ./src/
 
 rules: 
   comments:
