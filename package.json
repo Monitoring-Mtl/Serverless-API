@@ -29,6 +29,7 @@
         "@types/axios": "^0.14.0",
         "@types/cors": "^2.8.15",
         "@types/express": "^4.17.18",
+        "aws-sdk": "^2.1480.0",
         "axios": "^1.5.1",
         "body-parser": "^1.20.2",
         "cors": "^2.8.5",
