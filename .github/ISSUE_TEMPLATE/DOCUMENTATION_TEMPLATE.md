@@ -1,8 +1,8 @@
 ---
 name: Documentation
-about: Create a report to help us improve
+about: Create appropriate documentation
 title: ''
-labels: bug
+labels: documentation
 assignees: ''
 ---
 
