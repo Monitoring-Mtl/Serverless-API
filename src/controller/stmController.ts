@@ -6,16 +6,16 @@ import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
 import { routes, shape, trips, stops } from '../../data/data';
 
-// Create an Axios instance with the custom headers
-const axiosInstance = axios.create({
-    headers: {
-        apiKey: apiKey,
-    },
-});
-
 // Get the vehicle position from the STM API
-export const getVehiclePosition = (_req: Request, res: Response) => {
-    axiosInstance
+export const getVehiclePosition = async (_req: Request, res: Response) => {
+    // Create an Axios instance with the custom headers
+    const axiosInstance = axios.create({
+        headers: {
+            apiKey: apiKey,
+        },
+    });
+
+    await axiosInstance
         .get(apiUrl + 'tripUpdates', { responseType: 'arraybuffer' })
         .then((response) => {
             // Create a FeedMessage object from the GTFS-realtime protobuf
@@ -30,7 +30,7 @@ export const getVehiclePosition = (_req: Request, res: Response) => {
             // Error handling
             res.status(409).json({
                 body: JSON.stringify({
-                    message: 'Error fetching STM data:' + error,
+                    message: 'Error fetching STM data : ' + error,
                 }),
             });
         });
@@ -48,7 +48,7 @@ export const getStopById = (req: Request, res: Response) => {
     });
 };
 
-export const getAllRoutes = (_req: Request, res: Response) => {
+export const getAllRoutes = async (_req: Request, res: Response) => {
     res.status(200).json({
         routes: routes,
     });
