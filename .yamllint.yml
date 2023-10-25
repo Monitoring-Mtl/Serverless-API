@@ -1,0 +1,35 @@
+extends: default
+
+ignore: 
+  - node_modules/
+  - dist/
+  - coverage/
+  - tests/
+  - src/
+
+rules: 
+  comments:
+    require-starting-space: true
+    ignore-shebangs: true
+    min-spaces-from-content: 2
+  comments-indentation:
+    level: warning
+  document-start:
+    present: false
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 0
+    level: warning
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: true
+  line-length: 
+    max: 80
+    allow-non-breakable-words: true
+    level: warning
+  quoted-strings:
+    required: only-when-needed
+  trailing-spaces: disable
+

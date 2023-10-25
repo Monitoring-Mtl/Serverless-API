@@ -4,67 +4,82 @@ on:
     workflow_call:
         inputs:
             deploy-test-coverage:
-                description: Whether to deploy test coverage to Github Pages
-                required: true
-                default: false
-                type: boolean
+              description: Whether to deploy test coverage to Github Pages
+              required: true
+              default: false
+              type: boolean
 
 jobs:
     linting:
+
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+          - name: Checkout code
+            uses: actions/checkout@v2
 
-            - name: Setup Node.js
-              uses: ./.github/actions/setup-node
+          - name: Setup Node.js
+            uses: ./.github/actions/setup-node
 
-            - name: Lint with ESLint and auto fix
-              # Lint all JavaScript and Typescript files using config file and fix any errors
-              run: |
-                  npm run lint --fix
-                  npm run format
+          - name: Lint with ESLint and auto fix
+            # Lint all JavaScript and Typescript files using config file and fix any errors
+            run: |
+                npm run lint --fix
+                npm run format
 
-            - name: Commit fixes if needed
-              run: |
-                  git config --local user.email "action@github.com"
-                  git config --local user.name "GitHub Action"
-                  if [[ $(git diff --stat) != '' ]]; then 
-                      git commit -am "Fix lint errors"
-                  else
-                      echo "No lint errors found"
-                  fi
+          - name: Commit fixes if needed
+            run: |
+                git config --local user.email "action@github.com"
+                git config --local user.name "GitHub Action"
+                if [[ $(git diff --stat) != '' ]]; then 
+                    git commit -am "Fix lint errors"
+                else
+                    echo "No lint errors found"
+                fi
+          
+          # - name: Lint YAML files
+          #   env:
+          #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #   uses: karancode/yamllint-github-action@master
+          #   with:
+          #     yamllint_config_filepath: .yamllint.yml
+          #     yamllint_comment: true
+
+          - name: Lint YAML files
+            uses: opt-nc/yamlfixer-action@main
+            with:
+              options: --config-file .yamllint.yml --summary
+              user: ${{ github.actor }} 
+              token: $${ secrets.GITHUB_TOKEN }
 
     testing:
+
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+          - name: Checkout code
+            uses: actions/checkout@v2
 
-            - name: Setup Node.js
-              uses: ./.github/actions/setup-node
+          - name: Setup Node.js
+            uses: ./.github/actions/setup-node
 
-            - name: Run tests
-              uses: ./.github/actions/run-tests
+          - name: Run tests
+            uses: ./.github/actions/run-tests
 
-            - name: Configure pages
-              if: ${{ inputs.deploy-test-coverage }}
-              uses: actions/configure-pages@v3
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+          - name: Configure pages
+            if: ${{ inputs.deploy-test-coverage }}
+            uses: actions/configure-pages@v3
+            with:
+                token: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Upload artifact
-              if: ${{ inputs.deploy-test-coverage }}
-              uses: actions/upload-pages-artifact@v1
-              with:
-                  name: test-coverage
-                  path: ./coverage/lcov-report
+          - name: Upload artifact
+            if: ${{ inputs.deploy-test-coverage }}
+            uses: actions/upload-pages-artifact@v1
+            with:
+                name: test-coverage
+                path: ./coverage/lcov-report
 
-            - name: Deploy to GitHub Pages
-              if: ${{ inputs.deploy-test-coverage }}
-              id: deployment
-              uses: actions/deploy-pages@v2
-              with:
-                  artifact_name: test-coverage
+          - name: Deploy to GitHub Pages
+            if: ${{ inputs.deploy-test-coverage }}
+            id: deployment
+            uses: actions/deploy-pages@v2
+            with:
+                artifact_name: test-coverage
