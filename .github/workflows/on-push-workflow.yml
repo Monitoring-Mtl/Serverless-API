@@ -4,6 +4,8 @@ on:
     push:
         branches:
         - master
+        paths:
+        - 'src/**'
     # Allows the manual execution of the workflow from the Action tab
     workflow_dispatch:
     
