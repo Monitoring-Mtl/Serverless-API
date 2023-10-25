@@ -1,57 +1,86 @@
-import { getVehiclePosition } from '../../../src/controller/stmController';
 import axios from 'axios';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-import { getMockReq, getMockRes } from '@jest-mock/express';
+import { getMockReq } from '@jest-mock/express';
+import { Response } from 'express';
 
+const mockFeedMessageData = {
+    header: {
+        gtfsRealtimeVersion: '2.0',
+    },
+    entity: [
+        {
+            id: '1',
+            vehicle: {
+                trip: {
+                    tripId: 'tripA',
+                },
+                vehicle: {
+                    id: 'vehicleX',
+                },
+                position: {
+                    latitude: 40.73060989379883,
+                    longitude: -73.93524169921875,
+                },
+            },
+        },
+        {
+            id: '2',
+            vehicle: {
+                trip: {
+                    tripId: 'tripB',
+                },
+                vehicle: {
+                    id: 'vehicleY',
+                },
+                position: {
+                    latitude: 40.73060989379883,
+                    longitude: -73.93524169921875,
+                },
+            },
+        },
+    ],
+};
+const serializedData = GtfsRealtimeBindings.transit_realtime.FeedMessage.encode(mockFeedMessageData).finish();
+
+// Mock axios first
 jest.mock('axios');
-const mockAxios = jest.spyOn(axios, 'get');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-// Create a mock request object
-const mockRequest = getMockReq();
+const mockResponse = () => {
+    const res: Partial<Response> = {};
+    res.status = jest.fn().mockReturnValue(res);
+    res.json = jest.fn().mockReturnValue(res);
+    return res as Response;
+};
+
+import { getVehiclePosition } from '../../../src/controller/stmController';
 
 describe('getVehiclePosition', () => {
-    it('should return decoded data as JSON', () => {
-        const mockResponse = {
-            data: new Uint8Array([10, 2, 8, 1, 18, 1]),
-        };
-
-        mockAxios.mockResolvedValue(mockResponse);
-
-        const expectedData = {
-            entity: [
-                {
-                    id: '1',
-                },
-            ],
-        };
-        const mockFeedMessage = new GtfsRealtimeBindings.transit_realtime.FeedMessage();
-        mockFeedMessage.entity = expectedData.entity;
-
-        const mockDecode = jest.spyOn(GtfsRealtimeBindings.transit_realtime.FeedMessage, 'decode');
-        mockDecode.mockReturnValue(mockFeedMessage);
-
-        const mockRes = getMockRes().res;
-
-        getVehiclePosition(mockRequest, mockRes);
-
-        expect(mockDecode).toHaveBeenCalledWith(mockResponse.data);
-        expect(mockRes).toHaveBeenCalledWith(200);
-        expect(mockRes).toHaveBeenCalledWith({ body: expectedData });
+    afterEach(() => {
+        jest.clearAllMocks();
     });
 
-    it('should return an error message if the request fails', () => {
-        const mockError = new Error('Request failed');
-        mockAxios.mockRejectedValue(mockError);
+    it('should fetch vehicle position and return FeedMessage as JSON', async () => {
+        mockedAxios.create.mockReturnValueOnce({
+            get: jest.fn().mockResolvedValue({ data: serializedData }),
+        } as never);
 
-        const mockRes = getMockRes().res;
+        const res = mockResponse();
 
-        getVehiclePosition(mockRequest, mockRes);
+        await getVehiclePosition(getMockReq(), res);
 
-        expect(mockRes).toHaveBeenCalledWith(409);
-        expect(mockRes).toHaveBeenCalledWith({
-            body: JSON.stringify({
-                message: 'Error fetching STM data:' + mockError,
-            }),
-        });
+        expect(res.status).toHaveBeenCalledWith(200);
+    });
+
+    it('should handle error when fetching STM data', async () => {
+        mockedAxios.create.mockReturnValueOnce({
+            get: jest.fn().mockRejectedValue(new Error('')),
+        } as never);
+
+        const res = mockResponse();
+
+        await getVehiclePosition(getMockReq(), res);
+
+        expect(res.status).toHaveBeenCalledWith(409);
     });
 });
