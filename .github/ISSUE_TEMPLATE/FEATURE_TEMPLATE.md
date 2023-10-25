@@ -1,8 +1,8 @@
 ---
 name: Feature Request
-about: Create a report to help us improve
+about: Create a new feature
 title: ''
-labels: bug
+labels: enhancement
 assignees: ''
 ---
 
