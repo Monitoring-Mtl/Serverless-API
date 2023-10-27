@@ -8,12 +8,12 @@ frameworkVersion: '3'
 provider:
     name: aws
     runtime: nodejs18.x
-    region: 'us-east-1'
+    region: 'ca-central-1'
     profile: 'default'
 
 functions:
     api:
-        handler: dist/src/index.handler
+        handler: src/index.handler
         events:
             - httpApi: '*'
 

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-import { DynamoDBClient, QueryCommand, ScanOutput } from '@aws-sdk/client-dynamodb';
-import { unmarshall } from '@aws-sdk/util-dynamodb';
+import { executeQuery } from '../service/athenaService';
 import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
 import { routes, shape, trips, stops } from '../../data/data';
@@ -80,30 +79,16 @@ export const getAllTrips = (_req: Request, res: Response) => {
     });
 };
 
-export const getAllTripsForRoute = (req: Request, res: Response) => {
-    res.status(200).json({
-        trips: trips.filter((trip) => trip.route_id === 5),
-    });
-    return;
+export const getAllTripsForRoute = async (req: Request, res: Response) => {
+    const queryString = `SELECT * FROM "gtfs-static-data-db"."trips" WHERE route_id = ${Number(
+        req.params.id,
+    )} limit 20;`;
 
-    const tableName = 'STM_DATA_STATIC_TRIPS';
-    const command = new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: 'route_id = :routeId',
-        ExpressionAttributeValues: { ':routeId': { S: req.params.id } },
-    });
-
-    const client = new DynamoDBClient({ region: 'us-east-1' });
-
-    client
-        .send(command)
-        .then((data: ScanOutput) => {
-            res.status(200).json({
-                data: data.Items?.map((item) => unmarshall(item)),
-                count: data.Count,
-            });
+    executeQuery(queryString)
+        .then((data) => {
+            res.status(200).json({ data });
         })
         .catch((error) => {
-            res.send(error.message);
+            res.status(409).json({ error });
         });
 };
