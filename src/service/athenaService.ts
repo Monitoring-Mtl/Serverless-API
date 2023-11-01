@@ -6,12 +6,8 @@ const athena = new AWS.Athena();
 export const executeQuery = async (queryString: string) => {
     const params = {
         QueryString: queryString,
-        QueryExecutionContext: {
-            Database: `"gtfs-static-data-db"`,
-        },
-        ResultConfiguration: {
-            OutputLocation: 's3://monitoring-mtl-gtfs-static/Unsaved/', // Ensure you have this bucket set up
-        },
+        QueryExecutionContext: { Database: `"gtfs-static-data-db"` },
+        ResultConfiguration: { OutputLocation: 's3://monitoring-mtl-gtfs-static/Unsaved/' },
     };
 
     try {

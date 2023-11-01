@@ -3,6 +3,7 @@ import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 import { executeQuery } from '../service/athenaService';
 import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
+import { resultSetToJson } from '../utils/dataUtils';
 
 // Get the vehicle position from the STM API
 export const getVehiclePosition = async (_req: Request, res: Response) => {
