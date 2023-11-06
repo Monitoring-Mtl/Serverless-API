@@ -1,7 +1,5 @@
 import axios from 'axios';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-import { DynamoDBClient, QueryCommand, ScanOutput } from '@aws-sdk/client-dynamodb';
-import { unmarshall } from '@aws-sdk/util-dynamodb';
 import { apiKey, apiUrl } from '../config/config';
 import { Request, Response } from 'express';
 import { routes, shape, trips, stops } from '../../data/data';
@@ -80,7 +78,7 @@ export const getAllTrips = (_req: Request, res: Response) => {
     });
 };
 
-export const getAllTripsForRoute = (req: Request, res: Response) => {
+export const getAllTripsForRoute = (_req: Request, res: Response) => {
     res.status(200).json({
         trips: trips.filter((trip) => trip.route_id === 5),
     });
