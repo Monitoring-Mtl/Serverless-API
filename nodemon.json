@@ -1,5 +1,0 @@
-{
-    "watch": ["src/**/*.ts"],
-    "ext": "ts",
-    "exec": "serverless offline start"
-}
