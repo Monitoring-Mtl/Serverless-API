@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import {
-    //getAllTripsForRoute,
+    getAllTripsForRoute,
     getAllRoutes,
-    //getAllTrips,
+    getAllTrips,
     getRouteById,
     getAllStops,
     getStopById,
@@ -12,9 +12,9 @@ import {
 
 const router: Router = Router();
 
-//router.get('/trips', getAllTrips);
+router.get('/trips', getAllTrips);
 
-//router.get('/trips/:id', getAllTripsForRoute);
+router.get('/trips/:id', getAllTripsForRoute);
 
 router.get('/routes', getAllRoutes);
 router.get('/routes/:id', getRouteById);
