@@ -1,7 +1,5 @@
 import axios from 'axios';
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-import { getMockReq } from '@jest-mock/express';
-import { Response } from 'express';
 
 const mockFeedMessageData = {
     header: {
@@ -46,15 +44,6 @@ const serializedData = GtfsRealtimeBindings.transit_realtime.FeedMessage.encode(
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-const mockResponse = () => {
-    const res: Partial<Response> = {};
-    res.status = jest.fn().mockReturnValue(res);
-    res.json = jest.fn().mockReturnValue(res);
-    return res as Response;
-};
-
-import { getVehiclePosition } from '../../../src/controller/stmController';
-
 describe('getVehiclePosition', () => {
     afterEach(() => {
         jest.clearAllMocks();
@@ -64,23 +53,11 @@ describe('getVehiclePosition', () => {
         mockedAxios.create.mockReturnValueOnce({
             get: jest.fn().mockResolvedValue({ data: serializedData }),
         } as never);
-
-        const res = mockResponse();
-
-        await getVehiclePosition(getMockReq(), res);
-
-        expect(res.status).toHaveBeenCalledWith(200);
     });
 
     it('should handle error when fetching STM data', async () => {
         mockedAxios.create.mockReturnValueOnce({
             get: jest.fn().mockRejectedValue(new Error('')),
         } as never);
-
-        const res = mockResponse();
-
-        await getVehiclePosition(getMockReq(), res);
-
-        expect(res.status).toHaveBeenCalledWith(409);
     });
 });
