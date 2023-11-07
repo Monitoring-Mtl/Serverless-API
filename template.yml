@@ -2,13 +2,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
 
-Parameters:  # Added this section
-  ApiUrl:
-    Description: The STM API URL
-    Type: String
-  ApiKey:
-    Description: The STM API Key
-    Type: String
+Parameters: # Added this section
+    ApiUrl:
+        Description: The STM API URL
+        Type: String
+    ApiKey:
+        Description: The STM API Key
+        Type: String
 
 Globals:
     Function:
@@ -25,13 +25,13 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             CodeUri: ./
-            Handler: dist/src/index.handler
+            Handler: dist/index.handler
             Runtime: nodejs14.x
             MemorySize: 512
             Environment:
-              Variables:
-                API_URL: !Ref ApiUrl
-                API_KEY: !Ref ApiKey                
+                Variables:
+                    API_URL: !Ref ApiUrl
+                    API_KEY: !Ref ApiKey
             Events:
                 ExpressFunctionProxy:
                     Type: Api

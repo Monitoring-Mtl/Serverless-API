@@ -5,7 +5,7 @@
     "main": "dist/src/index.js",
     "scripts": {
         "test": "jest --coverage",
-        "lint": "eslint --ignore-path .gitignore  --ext .js,.ts",
+        "lint": "eslint . --ignore-path .gitignore",
         "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
         "build": "rimraf dist && tsc",
         "offline": "npm run build && npx serverless offline",

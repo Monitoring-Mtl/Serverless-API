@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import {
-    getVehiclePosition,
     getAllTripsForRoute,
     getAllRoutes,
     getAllTrips,
@@ -12,8 +11,6 @@ import {
 } from '../controller/stmController.js';
 
 const router: Router = Router();
-
-router.get('/vehiclePosition', getVehiclePosition);
 
 router.get('/trips', getAllTrips);
 

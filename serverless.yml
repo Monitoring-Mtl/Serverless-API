@@ -13,7 +13,7 @@ provider:
 
 functions:
     api:
-        handler: dist/src/index.handler
+        handler: dist/index.handler
         events:
             - httpApi: '*'
 
