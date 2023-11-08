@@ -69,6 +69,9 @@
       </ul>
     </li>
     <li><a href="#utilisation">Utilisations</a></li>
+      <ul>
+        <li><a href="#rapport-de-couverture-de-tests">Rapport de couverture de tests</a></li>
+      </ul>
     <li><a href="#plan-de-développement">Plan de développement</a></li>
     <li><a href="#contribuer">Contribuer</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -165,9 +168,13 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
 <!-- EXAMPLES D'UTILISATION -->
 ## Utilisation
 
-Pour utiliser le endpoint de l'application visiter [swagger](https://monitoring-mtl.github.io/Swagger-github-pages/)
+Pour utiliser les endpoints de l'application visiter [swagger](https://monitoring-mtl.github.io/Swagger-github-pages/)
+Pour contribuer ou mettre a jour la documentation Swagger, voir se [repo](https://github.com/Monitoring-Mtl/Swagger-github-pages)
 
 _Pour plus d'exemples, référez-vous à [Documentation](https://github.com/Monitoring-Mtl/Serverless-API/wiki)_
+
+### Rapport de couverture de tests
+Pour visualier le rapport de couverture de tests et ses résultats, visiter : [coverage-report](https://monitoring-mtl.github.io/Serverless-API/)
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
