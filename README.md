@@ -174,7 +174,7 @@ Pour contribuer ou mettre a jour la documentation Swagger, voir ce [repertoire](
 ### Rapport de couverture de tests
 Pour visualier le rapport de couverture de tests et ses résultats, visiter : [coverage-report](https://monitoring-mtl.github.io/Serverless-API/)
 
-_Pour plus d'exemples, référez-vous à [Documentation](https://github.com/Monitoring-Mtl/Serverless-API/wiki)_
+_Pour plus d'informations, référez-vous à la [Documentation](https://github.com/Monitoring-Mtl/Serverless-API/wiki)_
 <p align="right">(<a href="#readme-top">haut</a>)</p>
 
 
