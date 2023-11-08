@@ -153,12 +153,7 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
    ```sh
    npm install
    ```
-4. Creer un .ENV et sauvegarder les clés API dans le `.env`
-   ```.env
-    API_URL=https://api.stm.info/pub/od/gtfs-rt/ic/v2/vehiclePositions
-    API_KEY=VOTRE_CLE_API
-   ```
-5. Lancer le serverless local
+4. Lancer le serverless local
    ```sh
      npm run offline
    ```
@@ -182,8 +177,8 @@ _Pour plus d'exemples, référez-vous à [Documentation](https://github.com/Moni
 ## Plan de Développement
 
 - [ ] Ajouter les endpoints nécessaires
-- [ ] Ajuster et automatiser le Pipeline
-- [ ] Collection des données
+- [x] Ajuster et automatiser le Pipeline
+- [x] Collection des données
 - [ ] Faire la documentations
 
 Voir les [issues](https://github.com/Monitoring-Mtl/Serverless-API/issues) pour voir les Features (et issues connuent).
@@ -242,11 +237,11 @@ Remerciements à
 Données Ouverte iBUS - App
 API Key : l7cb798b78334c48b2b6e4bd9513a221e9
 
-#Decision Relative a GitHub
+#Decision Relative a GitHub // Pas dans readme
 
 Expliquer pourquoi nous avons choisis le trunk-based development.
 
-#Structure des branches
+#Structure des branches // Faire wiki 
 
 Les branches doivent etre nommber avec le numero de issue generer dans le kanban. Doive etre associer a un pull request documenter. -->
 
