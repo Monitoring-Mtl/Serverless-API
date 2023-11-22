@@ -91,7 +91,7 @@
 </div>
 </br>
 
-Dans le contexte des villes intelligentes, des systèmes de transport intelligents (ITS), et de la mobilité
+Dans le contexte des villes intelligentes, des systèmes de transport intelligents, et de la mobilité
 durable, le développement de solutions logicielles permettant de mieux comprendre l'impact de divers
 facteurs (par exemple, les incidents routiers, la construction et la météo) sur la circulation devient un
 élément essentiel de la gestion du trafic routier. L’émergence récente des données ouvertes, comme
