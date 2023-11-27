@@ -28,6 +28,6 @@ router.get('/shapes', getAllShapes);
 router.get('/shapes/:id', getShapeById);
 
 router.get('/routeName/:id', getRouteNameByRouteId);
-router.get('/routeInfo/:id', getRouteInfoByRouteName);
+router.post('/routeInfo', getRouteInfoByRouteName);
 
 export default router;
