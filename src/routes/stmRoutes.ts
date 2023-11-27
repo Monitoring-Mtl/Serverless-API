@@ -8,6 +8,8 @@ import {
     getStopById,
     getAllShapes,
     getShapeById,
+    getRouteNameByRouteId,
+    getRouteInfoByRouteName,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
@@ -24,5 +26,8 @@ router.get('/stops/:id', getStopById);
 
 router.get('/shapes', getAllShapes);
 router.get('/shapes/:id', getShapeById);
+
+router.get('/routeName/:id', getRouteNameByRouteId);
+router.post('/routeInfo', getRouteInfoByRouteName);
 
 export default router;

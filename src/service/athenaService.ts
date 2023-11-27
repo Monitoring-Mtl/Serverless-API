@@ -1,16 +1,16 @@
 import AWS, { AWSError } from 'aws-sdk';
 import { resultSetToJson } from '../utils/dataUtils';
 
-export const executeQuery = async (queryString: string) => {
+export const executeQuery = async (queryString: string, database: string, outputLocation: string) => {
     const athena = new AWS.Athena();
 
     const params = {
         QueryString: queryString,
         QueryExecutionContext: {
-            Database: `"gtfs-static-data-db"`,
+            Database: database,
         },
         ResultConfiguration: {
-            OutputLocation: 's3://monitoring-mtl-gtfs-static/Unsaved/', // Ensure you have this bucket set up
+            OutputLocation: outputLocation, // Ensure you have this bucket set up
         },
     };
 
@@ -27,13 +27,13 @@ export const executeQuery = async (queryString: string) => {
                 .getQueryExecution({ QueryExecutionId: startResponse.QueryExecutionId })
                 .promise();
             queryState = statusResponse.QueryExecution?.Status?.State || 'UNKNOWN';
-
+            console.log(queryState);
             if (queryState === 'FAILED' || queryState === 'CANCELLED') {
                 throw new Error(`Athena query ${queryState}`);
             }
 
             // Wait for a short time before checking the status again
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // polling every second
+            await new Promise((resolve) => setTimeout(resolve, 5000)); // polling every second
         }
 
         const results = await athena.getQueryResults({ QueryExecutionId: startResponse.QueryExecutionId }).promise();
