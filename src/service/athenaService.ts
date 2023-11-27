@@ -10,7 +10,7 @@ export const executeQuery = async (queryString: string) => {
             Database: `"gtfs-static-data-db"`,
         },
         ResultConfiguration: {
-            OutputLocation: 's3://monitoring-mtl-gtfs-static/Unsaved/', // Ensure you have this bucket set up
+            OutputLocation: 's3://monitoring-mtl-athena-queries/Unsaved/', // Ensure you have this bucket set up
         },
     };
 
