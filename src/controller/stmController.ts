@@ -110,7 +110,7 @@ export const getRouteNameByRouteId = (req: Request, res: Response) => {
     const queryString = `SELECT DISTINCT "route_info" FROM "stm-gtfs-daily-stop-info"."daily_stops_info" where "route_id" = ${Number(
         req.params.id,
     )}`;
-    console.log(req.params.id);
+
     executeQuery(queryString, databaseDaily, outputLocationDaily)
         .then((response) => {
             res.status(200).json({ response });
@@ -128,7 +128,7 @@ export const getRouteInfoByRouteName = (req: Request, res: Response) => {
     const montrealOffset = 4 * 60 * 60; // UTC-4 in seconds
     const currentTime = Math.floor(Date.now() / 1000) - timezoneOffset - montrealOffset;
     const timeWindow = 60 * 60; // 60 minutes in seconds
-    console.log(req.body);
+
     const queryString = `
         SELECT * FROM "stm-gtfs-daily-stop-info"."daily_stops_info" 
         WHERE "trip_id" IN (
