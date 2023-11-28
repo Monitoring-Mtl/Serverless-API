@@ -149,6 +149,46 @@ export const getRouteInfoByRouteName = (req: Request, res: Response) => {
         });
 };
 
+// export const getSetup = (_req: Request, res: Response) => {
+//     const queryString = `
+//         SELECT "routes"."route_id", "route_short_name", "route_long_name", "route_info", "trip_id", "shape_id", "arrival_time_unix", "stop_id", "stop_name", "stop_lat", "stop_lon", "wheelchair_accessible", "wheelchair_boarding"
+//         FROM "gtfs-static-data-db"."routes" AS "routes"
+//         JOIN "stm-gtfs-daily-stop-info"."daily_stops_info" AS "stops"
+//         ON "routes"."route_id" = "stops"."route_id" AND "arrival_time_unix" BETWEEN 1701084380 AND 1701092380 AND "route_type" NOT IN (1)
+//     `;
+//     executeQuery(queryString, databaseStatic, outputLocationStatic)
+//         .then((response) => {
+//             res.status(200).json({ response });
+//         })
+//         .catch((error) => {
+//             res.status(409).json({ message: error.message });
+//         });
+// };
+
+interface RouteInfo {
+    route_id: string | number;
+    route_short_name: string | number | undefined;
+    route_long_name: string | number | undefined;
+    route_info: {
+        direction: string | number | undefined;
+        trip_id: string | number | undefined;
+        shape_id: string | number | undefined;
+        wheelchair_accessible: string | number | undefined;
+        stops: {
+            arrival_time_unix: string | number | undefined;
+            stop_id: string | number | undefined;
+            stop_name: string | number | undefined;
+            stop_lat: string | number | undefined;
+            stop_lon: string | number | undefined;
+            wheelchair_boarding: string | number | undefined;
+        }[];
+    }[];
+}
+
+interface Accumulator {
+    [key: string]: RouteInfo;
+}
+
 export const getSetup = (_req: Request, res: Response) => {
     const queryString = `
         SELECT "routes"."route_id", "route_short_name", "route_long_name", "route_info", "trip_id", "shape_id", "arrival_time_unix", "stop_id", "stop_name", "stop_lat", "stop_lon", "wheelchair_accessible", "wheelchair_boarding"
@@ -156,9 +196,56 @@ export const getSetup = (_req: Request, res: Response) => {
         JOIN "stm-gtfs-daily-stop-info"."daily_stops_info" AS "stops"
         ON "routes"."route_id" = "stops"."route_id" AND "arrival_time_unix" BETWEEN 1701084380 AND 1701092380 AND "route_type" NOT IN (1)
     `;
+
     executeQuery(queryString, databaseStatic, outputLocationStatic)
         .then((response) => {
-            res.status(200).json({ response });
+            const transformedResponse = response.reduce<Accumulator>((accumulator, currentValue) => {
+                // Ensure route_id is not undefined
+                if (currentValue.route_id !== undefined) {
+                    const routeId = currentValue.route_id.toString(); // Convert to string if necessary
+
+                    if (!accumulator[routeId]) {
+                        accumulator[routeId] = {
+                            route_id: currentValue.route_id,
+                            route_short_name: currentValue.route_short_name,
+                            route_long_name: currentValue.route_long_name,
+                            route_info: [],
+                        };
+                    }
+
+                    let routeInfo = accumulator[routeId].route_info.find(
+                        (info) => info.direction === currentValue.route_info,
+                    );
+                    if (!routeInfo) {
+                        routeInfo = {
+                            direction: currentValue.route_info,
+                            trip_id: currentValue.trip_id,
+                            shape_id: currentValue.shape_id,
+                            wheelchair_accessible: currentValue.wheelchair_accessible,
+                            stops: [],
+                        };
+                        accumulator[routeId].route_info.push(routeInfo);
+                    }
+
+                    routeInfo.stops.push({
+                        arrival_time_unix: currentValue.arrival_time_unix,
+                        stop_id: currentValue.stop_id,
+                        stop_name: currentValue.stop_name,
+                        stop_lat: currentValue.stop_lat,
+                        stop_lon: currentValue.stop_lon,
+                        // wheelchair_accessible: currentValue.wheelchair_accessible,
+                        wheelchair_boarding: currentValue.wheelchair_boarding,
+                    });
+                }
+                return accumulator;
+            }, {});
+
+            const finalResponse = {
+                data: Object.values(transformedResponse),
+            };
+
+            res.status(200).json(finalResponse);
+            // res.status(200).json({ response });
         })
         .catch((error) => {
             res.status(409).json({ message: error.message });
