@@ -10,7 +10,8 @@
         "build": "rimraf dist && tsc",
         "offline": "npm run build && npx serverless offline",
         "test:watch": "jest --watch",
-        "deploy": "npm run build && sam build && sam deploy"
+        "deploy": "npm run build && sam build && sam deploy",
+        "local": "rimraf dist && tsc && sam build && sam local start-api"
     },
     "husky": {
         "hooks": {
