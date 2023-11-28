@@ -10,6 +10,7 @@ import {
     getShapeById,
     getRouteNameByRouteId,
     getRouteInfoByRouteName,
+    getSetup,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
@@ -30,4 +31,5 @@ router.get('/shapes/:id', getShapeById);
 router.get('/routeName/:id', getRouteNameByRouteId);
 router.post('/routeInfo', getRouteInfoByRouteName);
 
+router.get('/setup', getSetup);
 export default router;

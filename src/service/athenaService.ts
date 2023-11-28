@@ -1,6 +1,10 @@
 import AWS, { AWSError } from 'aws-sdk';
 import { resultSetToJson } from '../utils/dataUtils';
 
+interface QueryRow {
+    [key: string]: string | number | undefined; // Replace this with the actual structure of your query row
+}
+
 export const executeQuery = async (queryString: string, database: string, outputLocation: string) => {
     let athena = new AWS.Athena();
 
@@ -43,9 +47,18 @@ export const executeQuery = async (queryString: string, database: string, output
             throw new Error(`Query did not succeed. Final state: ${queryState}`);
         }
 
-        athena = new AWS.Athena();
-        const results = await athena.getQueryResults({ QueryExecutionId: startResponse.QueryExecutionId }).promise();
-        return resultSetToJson(results);
+        // Handle pagination to retrieve all results
+        let results: QueryRow[] = [];
+        let nextToken: string | undefined;
+        do {
+            const response = await athena
+                .getQueryResults({ QueryExecutionId: startResponse.QueryExecutionId, NextToken: nextToken })
+                .promise();
+            results = results.concat(resultSetToJson(response)); // Append new results to existing results
+            nextToken = response.NextToken;
+        } while (nextToken);
+
+        return results;
     } catch (error) {
         throw new Error(`Error executing Athena query: ${(error as AWSError).message}`);
     }
