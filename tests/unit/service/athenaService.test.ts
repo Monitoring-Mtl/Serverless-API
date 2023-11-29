@@ -1,50 +1,70 @@
-import AWS from 'aws-sdk';
 import { executeQuery } from '../../../src/service/athenaService';
-// import { resultSetToJson } from '../../../src/utils/dataUtils'; // Update with the correct import path
+import { startQueryExecutionMock, getQueryExecutionMock, getQueryResultsMock } from '../../../__mocks__/athena';
 
-// Mock AWS SDK Athena methods
-const startQueryExecutionMock = jest.fn();
-const getQueryExecutionMock = jest.fn();
-const getQueryResultsMock = jest.fn();
+jest.mock('aws-sdk');
 
-AWS.Athena = jest.fn(() => ({
-    startQueryExecution: startQueryExecutionMock,
-    getQueryExecution: getQueryExecutionMock,
-    getQueryResults: getQueryResultsMock,
-}));
-
+// Mock resultSetToJson
 jest.mock('../../../src/utils/dataUtils', () => ({
-    resultSetToJson: jest.fn().mockImplementation((data) => data), // Mock this with an appropriate transformation if necessary
+    resultSetToJson: jest.fn().mockImplementation((data) => data),
 }));
 
-// Mock setTimeout to control async polling behavior
 jest.useFakeTimers();
 
 describe('AthenaService executeQuery', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        startQueryExecutionMock.mockReset().mockResolvedValue({ QueryExecutionId: '123' });
+        getQueryExecutionMock.mockReset().mockResolvedValue({ QueryExecution: { Status: { State: 'SUCCEEDED' } } });
+        getQueryResultsMock.mockReset().mockResolvedValue({
+            // mocked resultat, pas sur encore
+        });
     });
 
     it('executes a query successfully', async () => {
-        // Setup mock implementations
-        startQueryExecutionMock.mockResolvedValue({ QueryExecutionId: '123' });
-        getQueryExecutionMock.mockResolvedValue({ QueryExecution: { Status: { State: 'SUCCEEDED' } } });
-        getQueryResultsMock.mockResolvedValue({
-            /* Mock your query results here */
-        });
-
-        // Call the function
-        const results = await executeQuery('SELECT * FROM my_table', 'my_database', 's3://my-bucket');
+        const expectedResults = {}; // Same ici
+        const results = await executeQuery('SELECT * FROM ', '', 's3://');
 
         // Assertions
-        expect(results).toEqual();
+        expect(results).toEqual(expectedResults);
         expect(startQueryExecutionMock).toHaveBeenCalledWith({
-            QueryString: 'SELECT * FROM my_table',
-            QueryExecutionContext: { Database: 'my_database' },
-            ResultConfiguration: { OutputLocation: 's3://my-bucket' },
+            QueryString: 'SELECT * FROM ',
+            QueryExecutionContext: { Database: '' },
+            ResultConfiguration: { OutputLocation: 's3://' },
         });
-        // Add more assertions as needed
     });
 
-    // Add more test cases for error scenarios...
+    it('handles errors during query execution', async () => {
+        startQueryExecutionMock.mockRejectedValue(new Error('Query execution error'));
+
+        await expect(executeQuery('SELECT * FROM ', '', 's3://')).rejects.toThrow('Query execution error');
+        expect(startQueryExecutionMock).toHaveBeenCalled();
+    });
+
+    it('handles failed query state', async () => {
+        startQueryExecutionMock.mockResolvedValue({ QueryExecutionId: '123' });
+        getQueryExecutionMock.mockResolvedValue({ QueryExecution: { Status: { State: 'FAILED' } } });
+
+        await expect(executeQuery('SELECT * FROM ', '', 's3://')).rejects.toThrow('Athena query FAILED');
+        expect(startQueryExecutionMock).toHaveBeenCalled();
+        expect(getQueryExecutionMock).toHaveBeenCalled();
+    });
+
+    it('handles cancelled query state', async () => {
+        startQueryExecutionMock.mockResolvedValue({ QueryExecutionId: '123' });
+        getQueryExecutionMock.mockResolvedValue({ QueryExecution: { Status: { State: 'CANCELLED' } } });
+
+        await expect(executeQuery('SELECT * FROM ', '', 's3://')).rejects.toThrow('Athena query CANCELLED');
+        expect(startQueryExecutionMock).toHaveBeenCalled();
+        expect(getQueryExecutionMock).toHaveBeenCalled();
+    });
+
+    it('handles errors in retrieving query results', async () => {
+        startQueryExecutionMock.mockResolvedValue({ QueryExecutionId: '123' });
+        getQueryExecutionMock.mockResolvedValue({ QueryExecution: { Status: { State: 'SUCCEEDED' } } });
+        getQueryResultsMock.mockRejectedValue(new Error('Error retrieving results'));
+
+        await expect(executeQuery('SELECT * FROM ', '', 's3://')).rejects.toThrow('Error retrieving results');
+        expect(startQueryExecutionMock).toHaveBeenCalled();
+        expect(getQueryExecutionMock).toHaveBeenCalled();
+        expect(getQueryResultsMock).toHaveBeenCalled();
+    });
 });
