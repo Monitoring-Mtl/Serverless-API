@@ -7,6 +7,10 @@ const databaseDaily = `"stm-gtfs-daily-stop-info"`;
 const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
 
+export const getSimpleHealthCheck = (_req: Request, res: Response) => {
+    res.status(200).json({ message: 'STM Serverles API is up and running' });
+};
+
 export const getAllStops = (_req: Request, res: Response) => {
     const queryString = `SELECT * FROM "gtfs-static-data-db"."stops"`;
 
