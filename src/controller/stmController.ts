@@ -260,14 +260,10 @@ export const getSetup = (_req: Request, res: Response) => {
 };
 
 export const getAnalyze = (req: Request, res: Response) => {
-    console.log(req.query);
-    console.log(req.query.routeId, req.query.stopId, req.query.start, req.query.end);
-
     const queryString = `
-    SELECT "routeid", "vehicleid", "current_occupancy", "offset" FROM "gtfs-analytics-data"."monitoring_mtl_stm_analytics" WHERE "routeid" = ${req.query.routeId} and "stop_id" = ${req.query.stopId} and "arrival_time_unix" BETWEEN ${req.query.start} and ${req.query.end}
-    `;
-
-    console.log(queryString);
+    SELECT "routeid", "vehicleid", "current_occupancy", "offset" FROM "gtfs-analytics-data"."monitoring_mtl_stm_analytics" 
+    WHERE "routeid" = ${req.query.routeId} and "stop_id" = ${req.query.stopId} and "arrival_time_unix" 
+    BETWEEN ${req.query.start} and ${req.query.end}`;
 
     let totalOffset = 0;
     const seatOccupancyCounts = {
