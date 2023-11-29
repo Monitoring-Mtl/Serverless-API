@@ -3,9 +3,11 @@ import { Request, Response } from 'express';
 
 const databaseStatic = `"gtfs-static-data-db"`;
 const databaseDaily = `"stm-gtfs-daily-stop-info"`;
+const databaseAnalytics = `"gtfs-analytics-data"`;
 
 const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
+const outputLocationAnalytics = 's3://monitoring-mtl-gtfs-analytics/Unsaved/';
 
 export const getSimpleHealthCheck = (_req: Request, res: Response) => {
     res.status(200).json({ message: 'STM Serverles API is up and running' });
@@ -251,6 +253,63 @@ export const getSetup = (_req: Request, res: Response) => {
             };
 
             res.status(200).json(finalResponse);
+        })
+        .catch((error) => {
+            res.status(409).json({ message: error.message });
+        });
+};
+
+export const getAnalyze = (req: Request, res: Response) => {
+    const queryString = `
+    SELECT "routeid", "vehicleid", "current_occupancy", "offset" FROM "gtfs-analytics-data"."monitoring_mtl_stm_analytics" 
+    WHERE "routeid" = ${req.query.routeId} and "stop_id" = ${req.query.stopId} and "arrival_time_unix" 
+    BETWEEN ${req.query.start} and ${req.query.end}`;
+
+    let totalOffset = 0;
+    const seatOccupancyCounts = {
+        many_seats_available: 0,
+        few_seats_available: 0,
+        standing_room_only: 0,
+    };
+    const busWheelchairLevelCounts = {
+        accessible_2: 0,
+        accessible_1: 0,
+        not_accessible: 0,
+    };
+
+    executeQuery(queryString, databaseAnalytics, outputLocationAnalytics)
+        .then((response) => {
+            response.forEach((row) => {
+                // Calculate total for average OFFSET
+                totalOffset += Number(row.offset);
+
+                // Count instances for each type of seat occupancy
+                if (row.current_occupancy === 'MANY_SEATS_AVAILABLE') {
+                    seatOccupancyCounts.many_seats_available++;
+                } else if (row.current_occupancy === 'FEW_SEATS_AVAILABLE') {
+                    seatOccupancyCounts.few_seats_available++;
+                } else if (row.current_occupancy === 'STANDING_ROOM_ONLY') {
+                    seatOccupancyCounts.standing_room_only++;
+                }
+
+                // Categorize bus ID
+                if (Number(row.vehicleid) < 29000) {
+                    busWheelchairLevelCounts.not_accessible++;
+                } else if (Number(row.vehicleid) >= 29000 && Number(row.vehicleid) < 37054) {
+                    busWheelchairLevelCounts.accessible_1++;
+                } else if (Number(row.vehicleid) >= 37054) {
+                    busWheelchairLevelCounts.accessible_2++;
+                }
+            });
+
+            // Calculate average of OFFSET
+            const averageOffset = totalOffset / response.length;
+
+            res.status(200).json({
+                averageOffset,
+                seatOccupancyCounts,
+                busWheelchairLevelCounts,
+            });
         })
         .catch((error) => {
             res.status(409).json({ message: error.message });
