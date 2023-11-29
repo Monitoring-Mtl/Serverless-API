@@ -11,9 +11,12 @@ import {
     getRouteNameByRouteId,
     getRouteInfoByRouteName,
     getSetup,
+    getSimpleHealthCheck,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
+
+router.get('/simpleHealthCheck', getSimpleHealthCheck);
 
 router.get('/trips', getAllTrips);
 

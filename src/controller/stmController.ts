@@ -7,6 +7,10 @@ const databaseDaily = `"stm-gtfs-daily-stop-info"`;
 const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
 
+export const getSimpleHealthCheck = (_req: Request, res: Response) => {
+    res.status(200).json({ message: 'STM Serverles API is up and running' });
+};
+
 export const getAllStops = (_req: Request, res: Response) => {
     const queryString = `SELECT * FROM "gtfs-static-data-db"."stops"`;
 
@@ -144,26 +148,9 @@ export const getRouteInfoByRouteName = (req: Request, res: Response) => {
             res.status(200).json({ response });
         })
         .catch((error) => {
-            //res.send(error.message);
             res.status(409).json({ message: error.message });
         });
 };
-
-// export const getSetup = (_req: Request, res: Response) => {
-//     const queryString = `
-//         SELECT "routes"."route_id", "route_short_name", "route_long_name", "route_info", "trip_id", "shape_id", "arrival_time_unix", "stop_id", "stop_name", "stop_lat", "stop_lon", "wheelchair_accessible", "wheelchair_boarding"
-//         FROM "gtfs-static-data-db"."routes" AS "routes"
-//         JOIN "stm-gtfs-daily-stop-info"."daily_stops_info" AS "stops"
-//         ON "routes"."route_id" = "stops"."route_id" AND "arrival_time_unix" BETWEEN 1701084380 AND 1701092380 AND "route_type" NOT IN (1)
-//     `;
-//     executeQuery(queryString, databaseStatic, outputLocationStatic)
-//         .then((response) => {
-//             res.status(200).json({ response });
-//         })
-//         .catch((error) => {
-//             res.status(409).json({ message: error.message });
-//         });
-// };
 
 interface RouteInfo {
     route_id: string | number;

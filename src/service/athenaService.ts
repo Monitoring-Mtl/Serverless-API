@@ -33,6 +33,7 @@ export const executeQuery = async (queryString: string, database: string, output
                 .promise();
             queryState = statusResponse.QueryExecution?.Status?.State || 'UNKNOWN';
 
+            // Tracking for query state in console
             console.log(queryState);
 
             if (queryState === 'FAILED' || queryState === 'CANCELLED') {
