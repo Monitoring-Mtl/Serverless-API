@@ -266,6 +266,7 @@ export const getAnalyze = (req: Request, res: Response) => {
     BETWEEN ${req.query.start} and ${req.query.end}`;
 
     let totalOffset = 0;
+    const offsetArray: number[] = [];
     const seatOccupancyCounts = {
         many_seats_available: 0,
         few_seats_available: 0,
@@ -282,6 +283,7 @@ export const getAnalyze = (req: Request, res: Response) => {
             response.forEach((row) => {
                 // Calculate total for average OFFSET
                 totalOffset += Number(row.offset);
+                offsetArray.push(Number(row.offset));
 
                 // Count instances for each type of seat occupancy
                 if (row.current_occupancy === 'MANY_SEATS_AVAILABLE') {
@@ -307,10 +309,12 @@ export const getAnalyze = (req: Request, res: Response) => {
 
             res.status(200).json({
                 averageOffset,
+                offsetArray,
                 seatOccupancyCounts,
                 busWheelchairLevelCounts,
             });
         })
+
         .catch((error) => {
             res.status(409).json({ message: error.message });
         });
