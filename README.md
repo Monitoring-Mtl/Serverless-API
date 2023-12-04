@@ -158,7 +158,7 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
    ```
 4. Lancer le serverless local
    ```sh
-     npm run offline
+   npm run offline
    ```
 
 <p align="right">(<a href="#readme-top">haut</a>)</p>
@@ -182,10 +182,11 @@ _Pour plus d'informations, référez-vous à la [Documentation](https://github.c
 <!-- PLAN -->
 ## Plan de Développement
 
-- [ ] Ajouter les endpoints nécessaires
+- [x] Ajouter les endpoints nécessaires
 - [x] Ajuster et automatiser le Pipeline
 - [x] Collection des données
 - [ ] Faire la documentations
+- [ ] Ajouter middlewares
 
 Voir les [issues](https://github.com/Monitoring-Mtl/Serverless-API/issues) pour voir les Features (et issues connuent).
 
