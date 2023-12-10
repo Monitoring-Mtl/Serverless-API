@@ -195,7 +195,7 @@ export const getSetup = (_req: Request, res: Response) => {
     FROM 
         "gtfs-static-data-db"."routes" AS "routes"
     JOIN 
-        "gtfs-daily-info-csv"."monitoring_mtl_gtfs_daily_stops_infos" AS "stops"
+        "stm-gtfs-daily-stops-info-setup"."monitoring_mtl_gtfs_daily_stops_infos" AS "stops"
     ON 
         "routes"."route_id" = "stops"."route_id"
         AND "arrival_time_unix" BETWEEN 1701084380 AND 1701092380 
