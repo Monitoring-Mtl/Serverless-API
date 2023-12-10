@@ -5,6 +5,9 @@ const databaseStatic = `"gtfs-static-data-db"`;
 const databaseDaily = `"stm-gtfs-daily-stop-info"`;
 const databaseAnalytics = `"gtfs-analytics-data"`;
 
+//const tableDailyInfo = `"stm-gtfs-daily-stops-info-setup"`
+//const tableAnalytics = `""`
+
 const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
 const outputLocationAnalytics = 's3://monitoring-mtl-gtfs-analytics/Unsaved/';
@@ -113,7 +116,7 @@ export const getAllTripsForRoute = (req: Request, res: Response) => {
 };
 
 export const getRouteNameByRouteId = (req: Request, res: Response) => {
-    const queryString = `SELECT DISTINCT "route_info" FROM "gtfs-daily-info-csv"."monitoring_mtl_gtfs_daily_stops_infos" where "route_id" = ${Number(
+    const queryString = `SELECT DISTINCT "route_info" FROM "stm-gtfs-daily-stops-info-setup"."monitoring_mtl_gtfs_daily_stops_infos" where "route_id" = ${Number(
         req.params.id,
     )}`;
 
@@ -136,10 +139,10 @@ export const getRouteInfoByRouteName = (req: Request, res: Response) => {
     const timeWindow = 60 * 60; // 60 minutes in seconds
 
     const queryString = `
-        SELECT * FROM "gtfs-daily-info-csv"."monitoring_mtl_gtfs_daily_stops_infos" 
+        SELECT * FROM "stm-gtfs-daily-stops-info-setup"."monitoring_mtl_gtfs_daily_stops_infos" 
         WHERE "trip_id" IN (
             SELECT distinct "trip_id" 
-            FROM "gtfs-daily-info-csv"."monitoring_mtl_gtfs_daily_stops_infos"
+            FROM "stm-gtfs-daily-stops-info-setup"."monitoring_mtl_gtfs_daily_stops_infos"
             WHERE "route_info" = '${req.body.routeName}'
             AND "arrival_time_unix" BETWEEN ${currentTime - timeWindow} AND ${currentTime + timeWindow} 
             LIMIT 1)
