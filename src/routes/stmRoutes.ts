@@ -13,6 +13,7 @@ import {
     getSetup,
     getSimpleHealthCheck,
     getAnalyze,
+    getDemo,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
@@ -38,4 +39,6 @@ router.post('/routeInfo', getRouteInfoByRouteName);
 router.get('/setup', getSetup);
 
 router.get('/analyze', getAnalyze);
+
+router.get('/demo', getDemo);
 export default router;
