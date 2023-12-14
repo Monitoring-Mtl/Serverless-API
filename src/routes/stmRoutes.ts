@@ -13,7 +13,6 @@ import {
     getSetup,
     getSimpleHealthCheck,
     getAnalyze,
-    getDemo,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
@@ -40,5 +39,4 @@ router.get('/setup', getSetup);
 
 router.get('/analyze', getAnalyze);
 
-router.get('/demo', getDemo);
 export default router;

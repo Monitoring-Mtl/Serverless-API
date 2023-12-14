@@ -12,10 +12,6 @@ const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
 const outputLocationAnalytics = 's3://monitoring-mtl-gtfs-analytics/Unsaved/';
 
-export const getDemo = (_req: Request, res: Response) => {
-    res.status(200).json({ message: 'DEMO PIPELINE' });
-};
-
 export const getSimpleHealthCheck = (_req: Request, res: Response) => {
     res.status(200).json({ message: 'STM Serverles API is up and running' });
 };
