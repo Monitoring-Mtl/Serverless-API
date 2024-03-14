@@ -6,9 +6,5 @@ runs:
   steps:
     - run: npm install -g n
       shell: bash
-    - run: n 16
-      shell: bash
-    - run: npm install
-      shell: bash
-    - run: npm test
+    - run: npm run test
       shell: bash
