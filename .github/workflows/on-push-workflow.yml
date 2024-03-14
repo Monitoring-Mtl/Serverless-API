@@ -38,4 +38,5 @@ jobs:
         run: |
           npm run build
           sam build
-          sam deploy --parameter-overrides ApiUrl=$STM_API_URL ApiKey=$STM_API_KEY 
+          sam deploy --parameter-overrides ApiUrl=$STM_API_URL ApiKey=$STM_API_KEY
+
