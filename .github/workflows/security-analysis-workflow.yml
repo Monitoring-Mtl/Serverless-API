@@ -1,0 +1,55 @@
+name: Security and code analysis
+
+on:
+  workflow_call:
+    inputs:
+      deploy:
+        description: 'Deploy to GitHub Pages (true/false)'
+        required: false
+        default: 'false'
+        type: string
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+ 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run npm audit
+        run: npm audit --json > audit_results.json || true
+      
+      - name: Check for Vulnerabilities
+        run: |
+          vulnerabilities=$(< audit_results.json)
+          echo "Full audit results:"
+          echo "$vulnerabilities"
+          if [ "$(jq '.metadata.vulnerabilities.total' audit_results.json)" -eq 0 ]; then
+            echo "No vulnerabilities found."
+          else
+            echo "Vulnerabilities found. Failing the check."
+            exit 1
+          fi
+
+  code_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+      
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          output: codeql-results
