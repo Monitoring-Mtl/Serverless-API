@@ -1,15 +1,14 @@
 name: Run tests 
 description: Run Jest tests 
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node.js
-      uses: ./.github/actions/setup-node
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Run Jest tests
-      run: npm test
+runs:
+  using: composite
+  steps:
+    - run: npm install -g n
+      shell: bash
+    - run: n 16
+      shell: bash
+    - run: npm install
+      shell: bash
+    - run: npm test
+      shell: bash
