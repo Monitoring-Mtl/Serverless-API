@@ -1,17 +1,15 @@
 name: Run tests 
-description: Run Jest tests and deploy test coverage to github pages
-inputs:
-  node-version: 
-    description: The version of Node.js to use
-    required: true
-    default: '14'
+description: Run Jest tests 
 
-runs:
-  using: composite
-  steps: 
-    - name: Run tests
-      env:
-        API_URL: mockURL
-        API_KEY: mockKey
-      run: npm run test 
-      shell: bash
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node.js
+      uses: ./.github/actions/setup-node
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Jest tests
+      run: npm test
