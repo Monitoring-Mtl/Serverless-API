@@ -2,8 +2,6 @@ name: Continuous Integration
 
 on:
   pull_request:
-    branches:
-      -master
 
   # Allows the manual execution of the workflow from the Action tab
   workflow_dispatch:
