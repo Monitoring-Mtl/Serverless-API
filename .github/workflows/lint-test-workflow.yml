@@ -1,13 +1,13 @@
 name: Lint and test
 
 on:
-    workflow_call:
-        inputs:
-            deploy-test-coverage:
-                description: Whether to deploy test coverage to Github Pages
-                required: true
-                default: false
-                type: boolean
+  workflow_call:
+    inputs:
+      deploy:
+        description: 'Deploy to GitHub Pages (true/false)'
+        required: false
+        default: 'false'
+        type: string
 
 jobs:
     linting:
@@ -50,20 +50,20 @@ jobs:
               uses: ./.github/actions/run-tests
 
             - name: Configure pages
-              if: ${{ inputs.deploy-test-coverage }}
+              if: ${{ inputs.deploy == 'true' }}
               uses: actions/configure-pages@v3
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Upload artifact
-              if: ${{ inputs.deploy-test-coverage }}
+              if: ${{ inputs.deploy == 'true' }}
               uses: actions/upload-pages-artifact@v1
               with:
                   name: test-coverage
                   path: ./coverage/lcov-report
 
             - name: Deploy to GitHub Pages
-              if: ${{ inputs.deploy-test-coverage }}
+              if: ${{ inputs.deploy == 'true' }}
               id: deployment
               uses: actions/deploy-pages@v2
               with:
