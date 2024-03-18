@@ -156,7 +156,11 @@ _Vous trouverez ci-bas un exemple de la procédure pour installer le projet loca
    ```sh
    npm install
    ```
-4. Lancer le serverless local
+4. Configurer les identifiants AWS
+   ```sh
+   export AWS_ACCESS_KEY_ID=<access-key-id> AWS_SECRET_ACCESS_KEY=<secret-access-key>
+   ```
+5. Lancer le serverless local
    ```sh
    npm run offline
    ```

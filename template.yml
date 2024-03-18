@@ -26,7 +26,7 @@ Resources:
         Properties:
             CodeUri: ./
             Handler: dist/index.handler
-            Runtime: nodejs14.x
+            Runtime: nodejs20.x
             MemorySize: 512
             Environment:
                 Variables:
