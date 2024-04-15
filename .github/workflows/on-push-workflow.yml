@@ -35,8 +35,10 @@ jobs:
         env:
           STM_API_URL: ${{ secrets.STM_API_URL }}
           STM_API_KEY: ${{ secrets.STM_API_KEY }}
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
+          MONGODB_DB_NAME: ${{ secrets.MONGODB_DB_NAME }}
         run: |
           npm run build
           sam build
-          sam deploy --parameter-overrides ApiUrl=$STM_API_URL ApiKey=$STM_API_KEY
+          sam deploy --parameter-overrides ApiUrl=$STM_API_URL ApiKey=$STM_API_KEY MongoDbUrl=$MONGODB_URL MongoDbDbName=$MONGODB_DB_NAME
 

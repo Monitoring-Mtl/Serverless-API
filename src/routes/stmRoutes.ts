@@ -13,6 +13,8 @@ import {
     getSetup,
     getSimpleHealthCheck,
     getAnalyze,
+    getSegmentsAnalysis,
+    getSegmentsData,
 } from '../controller/stmController.js';
 
 const router: Router = Router();
@@ -36,6 +38,9 @@ router.get('/routeName/:id', getRouteNameByRouteId);
 router.post('/routeInfo', getRouteInfoByRouteName);
 
 router.get('/setup', getSetup);
+
+router.get('/segments', getSegmentsData);
+router.get('/analyzeSegments', getSegmentsAnalysis);
 
 router.get('/analyze', getAnalyze);
 
