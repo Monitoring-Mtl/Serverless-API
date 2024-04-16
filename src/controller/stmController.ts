@@ -52,6 +52,7 @@ export const getSegmentsData = async (_req: Request, res: Response) => {
                     },
                 ],
             })
+            .limit(1000000)
             .toArray();
 
         console.log(segments);
@@ -94,6 +95,7 @@ export const getSegmentsAnalysis = async (_req: Request, res: Response) => {
                     },
                 },
             ])
+            .limit(1000000)
             .toArray();
 
         console.log(segmentsAverages);
