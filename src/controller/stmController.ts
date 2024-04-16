@@ -95,7 +95,7 @@ export const getSegmentsAnalysis = async (_req: Request, res: Response) => {
                     },
                 },
                 {
-                    $sort: { '_id.stop_id': 1 }, // ascending
+                    $sort: { '_id.previous_stop_id': 1 }, // ascending
                 },
             ])
             .limit(1000000)
