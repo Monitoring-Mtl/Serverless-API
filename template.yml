@@ -9,6 +9,12 @@ Parameters: # Added this section
     ApiKey:
         Description: The STM API Key
         Type: String
+    MongoDbUrl:
+        Description: MongoDb connection string
+        Type: String
+    MongoDbDbName:
+        Description: MongoDb database name
+        Type: String
 
 Globals:
     Function:
@@ -32,6 +38,8 @@ Resources:
                 Variables:
                     API_URL: !Ref ApiUrl
                     API_KEY: !Ref ApiKey
+                    MONGODB_URL: !Ref MongoDbUrl
+                    MONGODB_DB_NAME: !Ref MongoDbDbName
             Events:
                 ExpressFunctionProxy:
                     Type: Api

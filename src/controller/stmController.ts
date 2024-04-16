@@ -1,5 +1,6 @@
 import { executeQuery } from '../service/athenaService';
 import { Request, Response } from 'express';
+import { connectToDatabase } from '../mongo/conn.js';
 
 const databaseStatic = `"gtfs-static-data-db"`;
 const databaseDaily = `"stm-gtfs-daily-stop-info"`;
@@ -11,6 +12,8 @@ const databaseAnalytics = `"gtfs-analytics-data"`;
 const outputLocationStatic = 's3://monitoring-mtl-gtfs-static/Unsaved/';
 const outputLocationDaily = 's3://monitoring-mtl-gtfs-static-daily/Unsaved/';
 const outputLocationAnalytics = 's3://monitoring-mtl-gtfs-analytics/Unsaved/';
+
+const segmentsCollectionName = 'monitoring-mtl-stm-segments-analysis';
 
 export const getSimpleHealthCheck = (_req: Request, res: Response) => {
     res.status(200).json({ message: 'STM Serverles API is up and running' });
@@ -26,6 +29,88 @@ export const getAllStops = (_req: Request, res: Response) => {
         .catch((error) => {
             res.status(409).json({ message: error.message });
         });
+};
+
+export const getSegmentsData = async (_req: Request, res: Response) => {
+    const startUnix = Number(_req.query.start);
+    const endUnix = Number(_req.query.end);
+    const route_id = Number(_req.query.route_id);
+    try {
+        const db = await connectToDatabase();
+        if (!db) {
+            res.status(409).json({ message: 'Database connection failed' });
+        }
+        const segmentsCollection = db.collection(segmentsCollectionName);
+        const segments = await segmentsCollection
+            .find({
+                $and: [
+                    {
+                        arrival_time_unix: { $lte: endUnix, $gte: startUnix },
+                    },
+                    {
+                        routeId: route_id,
+                    },
+                ],
+            })
+            .limit(1000000)
+            .toArray();
+
+        console.log(segments);
+        if (segments) {
+            res.status(200).json(segments);
+        } else {
+            res.status(409).json({ message: "Couldn't fetch segments from MongoDB." });
+        }
+    } catch (error) {
+        console.error('Error fetching segments:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const getSegmentsAnalysis = async (_req: Request, res: Response) => {
+    const startUnix = Number(_req.query.start);
+    const endUnix = Number(_req.query.end);
+    const route_id = Number(_req.query.route_id);
+    try {
+        const db = await connectToDatabase();
+        if (!db) {
+            res.status(409).json({ message: 'Database connection failed' });
+        }
+        const segmentsCollection = db.collection(segmentsCollectionName);
+        const segmentsAverages = await segmentsCollection
+            .aggregate([
+                {
+                    $match: {
+                        arrival_time_unix: { $gte: startUnix, $lte: endUnix },
+                        routeId: route_id,
+                    },
+                },
+                {
+                    $group: {
+                        _id: {
+                            stop_id: '$stop_id',
+                            previous_stop_id: '$previous_stop_id',
+                        },
+                        average_offset_difference: { $avg: '$offset_difference' },
+                    },
+                },
+                {
+                    $sort: { '_id.previous_stop_id': 1 }, // ascending
+                },
+            ])
+            .limit(1000000)
+            .toArray();
+
+        console.log(segmentsAverages);
+        if (segmentsAverages) {
+            res.status(200).json(segmentsAverages);
+        } else {
+            res.status(409).json({ message: "Couldn't fetch segments from MongoDB." });
+        }
+    } catch (error) {
+        console.error('Error fetching segments:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };
 
 export const getStopById = (req: Request, res: Response) => {
