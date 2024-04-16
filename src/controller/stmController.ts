@@ -94,6 +94,9 @@ export const getSegmentsAnalysis = async (_req: Request, res: Response) => {
                         average_offset_difference: { $avg: '$offset_difference' },
                     },
                 },
+                {
+                    $sort: { '_id.stop_id': 1 }, // ascending
+                },
             ])
             .limit(1000000)
             .toArray();
