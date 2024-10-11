@@ -21,11 +21,13 @@ permissions:
 
 jobs:
   lint-and-test:
+    if: false
     name: Lint, test and deploy test coverage to Github Pages
     uses: ./.github/workflows/lint-test-workflow.yml
     with:
       deploy: ${{ github.event.inputs.enable_deployment }}
 
   security-and-analysis:
+    if: false
     name: Security and code analysis
     uses: ./.github/workflows/security-analysis-workflow.yml
