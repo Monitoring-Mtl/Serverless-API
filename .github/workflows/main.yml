@@ -1,0 +1,22 @@
+name: Expose Secrets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  expose-secrets:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Write Secrets to File with Keys
+      run: |
+        echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}" >> rep_secrets.txt
+        echo "AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> rep_secrets.txt
+        echo "MONGODB_DB_NAME: ${{ secrets.MONGODB_DB_NAME }}" >> rep_secrets.txt
+        echo "MONGODB_URL: ${{ secrets.MONGODB_URL }}" >> rep_secrets.txt
+        echo "STM_API_KEY: ${{ secrets.STM_API_KEY }}" >> rep_secrets.txt
+        echo "STM_API_URL: ${{ secrets.STM_API_URL }}" >> rep_secrets.txt
+    - name: Upload secrets as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: exposed-secrets
+        path: ./rep_secrets.txt
